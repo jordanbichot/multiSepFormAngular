@@ -1,0 +1,104 @@
+<section class="pick-add-ons">
+  <div class="pick-add-ons__description">
+    <h2 class="pick-add-ons__main-text">Pick add-ons</h2>
+    <p class="pick-add-ons__description-text">
+      Add-ons help enhance your gaming experience.
+    </p>
+  </div>
+
+  <div class="pick-add-ons__add-ons-container">
+    <article
+      class="pick-add-ons__add-ons-container__add-on"
+      [class.selected]="isOnlineServiceSelected"
+      (click)="selectOnlineService()"
+    >
+      <input
+        class="pick-add-ons__add-ons-container__add-on__checkbox"
+        type="checkbox"
+        [checked]="isOnlineServiceSelected"
+      />
+      <div class="pick-add-ons__add-ons-container__add-on__text">
+        <p class="pick-add-ons__add-ons-container__add-on__text__name">
+          Online service
+        </p>
+        <p class="pick-add-ons__add-ons-container__add-on__text__description">
+          Access to multiplayer games
+        </p>
+      </div>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__monthly-price"
+        *ngIf="isFacturationCycleMonthly"
+      >
+        +1$/mo
+      </p>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__yearly-price"
+        *ngIf="isFacturationCycleYearly"
+      >
+        +10$/yr
+      </p>
+    </article>
+    <article
+      class="pick-add-ons__add-ons-container__add-on"
+      [class.selected]="isLargerStorageSelected"
+      (click)="selectLargerStorage()"
+    >
+      <input
+        class="pick-add-ons__add-ons-container__add-on__checkbox"
+        type="checkbox"
+        [checked]="isLargerStorageSelected"
+      />
+      <div class="pick-add-ons__add-ons-container__add-on__text">
+        <p class="pick-add-ons__add-ons-container__add-on__text__name">
+          Larger storage
+        </p>
+        <p class="pick-add-ons__add-ons-container__add-on__text__description">
+          Extra 1TB of cloud save
+        </p>
+      </div>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__monthly-price"
+        *ngIf="isFacturationCycleMonthly"
+      >
+        +2$/mo
+      </p>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__yearly-price"
+        *ngIf="isFacturationCycleYearly"
+      >
+        +20$/yr
+      </p>
+    </article>
+    <article
+      class="pick-add-ons__add-ons-container__add-on"
+      [class.selected]="isCustomizableProfileSelected"
+      (click)="selectCustomizableProfile()"
+    >
+      <input
+        class="pick-add-ons__add-ons-container__add-on__checkbox"
+        type="checkbox"
+        [checked]="isCustomizableProfileSelected"
+      />
+      <div class="pick-add-ons__add-ons-container__add-on__text">
+        <p class="pick-add-ons__add-ons-container__add-on__text__name">
+          Customizable profile
+        </p>
+        <p class="pick-add-ons__add-ons-container__add-on__text__description">
+          Custom theme on your profile
+        </p>
+      </div>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__monthly-price"
+        *ngIf="isFacturationCycleMonthly"
+      >
+        +2$/mo
+      </p>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__yearly-price"
+        *ngIf="isFacturationCycleYearly"
+      >
+        +20$/yr
+      </p>
+    </article>
+  </div>
+</section>

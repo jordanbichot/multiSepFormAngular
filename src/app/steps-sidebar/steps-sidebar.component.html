@@ -1,0 +1,40 @@
+<section class="steps__card">
+  <ul class="steps__list">
+    <li class="steps__list__element">
+      <button class="steps__list__button" [class.activeStep]="activeStep == 1">
+        1
+      </button>
+      <div class="steps__list__text">
+        <p class="steps__list__text__number">Step 1</p>
+        <p class="steps__list__text__description">Your info</p>
+      </div>
+    </li>
+    <li class="steps__list__element">
+      <button class="steps__list__button" [class.activeStep]="activeStep == 2">
+        2
+      </button>
+      <div class="steps__list__text">
+        <p class="steps__list__text__number">Step 2</p>
+        <p class="steps__list__text__description">Select plan</p>
+      </div>
+    </li>
+    <li class="steps__list__element">
+      <button class="steps__list__button" [class.activeStep]="activeStep == 3">
+        3
+      </button>
+      <div class="steps__list__text">
+        <p class="steps__list__text__number">Step 3</p>
+        <p class="steps__list__text__description">Add-ons</p>
+      </div>
+    </li>
+    <li class="steps__list__element">
+      <button class="steps__list__button" [class.activeStep]="activeStep >= 4">
+        4
+      </button>
+      <div class="steps__list__text">
+        <p class="steps__list__text__number">Step 4</p>
+        <p class="steps__list__text__description">Summary</p>
+      </div>
+    </li>
+  </ul>
+</section>

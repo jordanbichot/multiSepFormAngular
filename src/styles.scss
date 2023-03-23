@@ -1,1 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+@use "assets/styles/reset.scss";
+@use "assets/styles/fonts.scss";
+@use "assets/styles/variables";
+
+body {
+  font-family: Ubuntu, Fallback, sans-serif;
+  color: variables.$color-primary-marine-blue;
+}
+
+@mixin flex($direction, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin secondary-text() {
+  margin-top: 0.5rem;
+  color: variables.$color-neutral-cool-gray;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  @media screen and (max-width: 376px) {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -1,0 +1,85 @@
+@use "../../assets/styles/variables";
+@use "../../styles.scss";
+
+.steps__card {
+  background-image: url("../../assets/images/bg-sidebar-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 274px;
+  height: 568px;
+}
+
+.steps__list {
+  padding-top: 1.5rem;
+
+  @include styles.flex(column, 1.5rem);
+
+  list-style: none;
+
+  &__element {
+    @include styles.flex(row, 1rem);
+  }
+
+  &__button {
+    color: variables.$color-neutral-magnolia;
+    border-color: variables.$color-neutral-magnolia;
+    border-style: solid;
+
+    background-color: transparent;
+    width: 1.775rem;
+    height: 1.775rem;
+    border-radius: 1rem;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.825rem;
+  }
+
+  &__text {
+    color: variables.$color-neutral-cool-gray;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    font-weight: 500;
+
+    @include styles.flex(column, 0);
+    align-content: space-between;
+
+    &__number {
+      font-size: 0.75rem;
+      font-weight: 400;
+    }
+
+    &__description {
+      color: variables.$color-neutral-magnolia;
+    }
+  }
+}
+
+.activeStep {
+  outline: none;
+  color: variables.$color-primary-marine-blue;
+  border-color: variables.$color-primary-light-blue;
+  background-color: variables.$color-primary-light-blue;
+  font-weight: 800;
+}
+
+@media screen and (max-width: 376px) {
+  .steps__card {
+    background-image: url("../../assets/images/bg-sidebar-mobile.svg");
+    width: 375px;
+    height: 170px;
+  }
+
+  .steps__list {
+    @include styles.flex(row, 1.5rem);
+    justify-content: center;
+    padding-left: 0;
+    &__button {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &__text {
+      display: none;
+    }
+  }
+}

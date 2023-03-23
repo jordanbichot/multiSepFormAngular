@@ -1,0 +1,113 @@
+<section class="plan-selector">
+  <div class="plan-selector__description">
+    <h2 class="plan-selector__main-text">Select your plan</h2>
+    <p class="plan-selector__description-text">
+      You have the option of monthly or yearly billing.
+    </p>
+  </div>
+  <div class="plan-selector__plans">
+    <article
+      class="plan-selector__plans__plan"
+      [class.selected_plan]="isArcadeSelected"
+      (click)="selectArcadePlan()"
+    >
+      <img
+        class="plan-selector__plans__plan__icon"
+        src="../../assets/images/icon-arcade.svg"
+      />
+      <h3 class="plan-selector__plans__plan__plan-type">Arcade</h3>
+      <p
+        class="plan-selector__plans__plan__monthly-rate"
+        *ngIf="isFacturationCycleMonthly"
+      >
+        $9/mo
+      </p>
+      <p
+        class="plan-selector__plans__plan__yearly-rate"
+        *ngIf="isFacturationCycleYearly"
+      >
+        $90/yr
+      </p>
+      <p
+        class="plan-selector__plans__plan__discount"
+        *ngIf="isFacturationCycleYearly"
+      >
+        2 months free
+      </p>
+    </article>
+    <article
+      class="plan-selector__plans__plan"
+      [class.selected_plan]="isAdvancedSelected"
+      (click)="selectAdvancedPlan()"
+    >
+      <img
+        class="plan-selector__plans__plan__icon"
+        src="../../assets/images/icon-advanced.svg"
+      />
+      <h3 class="plan-selector__plans__plan__plan-type">Advanced</h3>
+      <p
+        class="plan-selector__plans__plan__monthly-rate"
+        *ngIf="isFacturationCycleMonthly"
+      >
+        $12/mo
+      </p>
+      <p
+        class="plan-selector__plans__plan__yearly-rate"
+        *ngIf="isFacturationCycleYearly"
+      >
+        $120/yr
+      </p>
+      <p
+        class="plan-selector__plans__plan__discount"
+        *ngIf="isFacturationCycleYearly"
+      >
+        2 months free
+      </p>
+    </article>
+    <article
+      class="plan-selector__plans__plan"
+      [class.selected_plan]="isProSelected"
+      (click)="selectProPlan()"
+    >
+      <img
+        class="plan-selector__plans__plan__icon"
+        src="../../assets/images/icon-pro.svg"
+      />
+      <h3 class="plan-selector__plans__plan__plan-type">Pro</h3>
+      <p
+        class="plan-selector__plans__plan__monthly-rate"
+        *ngIf="isFacturationCycleMonthly"
+      >
+        $15/mo
+      </p>
+      <p
+        class="plan-selector__plans__plan__yearly-rate"
+        *ngIf="isFacturationCycleYearly"
+      >
+        $150/yr
+      </p>
+      <p
+        class="plan-selector__plans__plan__discount"
+        *ngIf="isFacturationCycleYearly"
+      >
+        2 months free
+      </p>
+    </article>
+  </div>
+  <div class="plan-selector__billing-selector">
+    <p class="plan-selector__billing-selector__options" id="monthly-selector">
+      Monthly
+    </p>
+    <label class="switch">
+      <input
+        type="checkbox"
+        (click)="toggleFacturationCycle()"
+        id="switch__checkbox"
+      />
+      <span class="slider round"></span>
+    </label>
+    <p class="plan-selector__billing-selector__options" id="yearly-selector">
+      Yearly
+    </p>
+  </div>
+</section>

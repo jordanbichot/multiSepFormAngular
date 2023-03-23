@@ -1,0 +1,40 @@
+@use "../../assets/styles/variables";
+@use "../../styles.scss";
+
+.personal-info {
+  @include styles.flex(column, 1rem);
+
+  color: variables.$color-primary-marine-blue;
+
+  &__main-text {
+    margin-bottom: 0.5rem;
+  }
+
+  &__description-text {
+    @include styles.secondary-text();
+  }
+}
+
+::ng-deep .personal-info__form {
+  @include styles.flex(column, 0.5rem);
+  &__text {
+    @include styles.flex(row, 0.5rem);
+    justify-content: space-between;
+
+    &__label {
+      font-weight: 500;
+    }
+  }
+  &__field {
+    cursor: pointer;
+    & input {
+      color: variables.$color-primary-marine-blue !important;
+    }
+
+    font-weight: 500;
+  }
+}
+
+.warning {
+  border-color: variables.$color-primary-strawberry-red;
+}

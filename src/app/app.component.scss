@@ -1,0 +1,152 @@
+@use "../assets/styles/variables";
+@use "../styles.scss";
+
+.buttons {
+  width: 120px;
+  height: 45px;
+
+  background-color: variables.$color-primary-marine-blue;
+  color: variables.$color-neutral-alabaster;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.main-component {
+  background-color: variables.$color-neutral-magnolia;
+  display: grid;
+
+  grid-template-rows: 105px 1fr 105px;
+  grid-template-columns: 250px 1fr 250px;
+
+  &__card {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    background-color: variables.$color-neutral-white;
+
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+
+    display: grid;
+    grid-template-columns: 285px 95px 1fr 95px;
+    grid-template-rows: 45px 441px 85px;
+
+    &__sidebar {
+      grid-row-start: 1;
+      grid-column-start: 1;
+    }
+
+    &__menus {
+      grid-row-start: 2;
+      grid-column-start: 3;
+    }
+
+    &__flow-buttons {
+      grid-row-start: 3;
+      grid-column-start: 3;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      &__next-step {
+        grid-column-start: 2;
+        justify-self: right;
+      }
+
+      &__go-back {
+        grid-column-start: 1;
+        justify-self: left;
+        background-color: transparent;
+        color: variables.$color-neutral-cool-gray;
+      }
+
+      &__next-step:hover {
+        cursor: pointer;
+        background-color: variables.$color-primary-light-marine-blue;
+      }
+
+      &__go-back:hover {
+        cursor: pointer;
+        color: variables.$color-primary-marine-blue;
+        background-color: transparent;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.last-step {
+  background-color: variables.$color-primary-purplish-blue;
+  &:hover {
+    opacity: 0.6;
+    background-color: variables.$color-primary-purplish-blue;
+  }
+}
+
+.inactive {
+  border: none;
+  background-color: transparent;
+  color: variables.$color-neutral-cool-gray;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 376px) {
+  .main-component {
+    overflow-x: hidden;
+    background-color: variables.$color-neutral-magnolia;
+    display: flex;
+
+    &__card {
+      grid-column-start: 1;
+      grid-row-start: 1;
+      display: grid;
+      grid-template-rows: 100px 70px 521px 70px;
+      grid-template-columns: 1fr;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+
+      padding: 0;
+      margin: 0;
+      background-color: variables.$color-neutral-magnolia;
+
+      &__sidebar {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        z-index: 0;
+      }
+
+      &__menus {
+        grid-row-start: 2;
+        grid-row-end: 4;
+        grid-column-start: 1;
+        z-index: 1;
+        margin: 0 15px;
+        padding: 2.25rem 1.75rem;
+
+        border-radius: 0.5rem;
+        background-color: variables.$color-neutral-white;
+      }
+
+      &__flow-buttons {
+        grid-row-start: 4;
+        grid-column-start: 1;
+        height: 100%;
+        padding: 12px;
+        background-color: variables.$color-neutral-white;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        &__go-back {
+          grid-column-start: 1;
+        }
+        &__next-step {
+          grid-column-start: 2;
+        }
+      }
+    }
+  }
+}
