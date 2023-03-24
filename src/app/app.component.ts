@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import personalDetails from './features/multiStepForm/models/personalDetails';
 
 @Component({
   selector: 'app-root',
@@ -49,73 +50,28 @@ export class AppComponent {
     if (this.addOnSelectorCustomizableProfileSelected) {
       this.addOnsCost += 2;
     }
-    if (this.planSelectorIsFacturationCycleMonthly) {
-      return this.addOnsCost;
-    } else {
-      return this.addOnsCost * 10;
+    if (this.planSelectorIsFacturationCycleYearly) {
+      this.addOnsCost *= 10;
     }
+
+    return this.addOnsCost;
   }
 
   generateBasicCost() {
-    if (this.planSelectorIsFacturationCycleMonthly) {
-      this.planSelectorPlanBasicCost =
-        this.planCostMonthly[this.planSelectorPlanType];
-      return this.planSelectorPlanBasicCost;
-    } else {
-      this.planSelectorPlanBasicCost =
-        this.planCostMonthly[this.planSelectorPlanType] * 10;
-      return this.planSelectorPlanBasicCost;
-    }
+    this.planSelectorPlanBasicCost = this.planSelectorIsFacturationCycleMonthly
+      ? this.planCostMonthly[this.planSelectorPlanType]
+      : this.planCostMonthly[this.planSelectorPlanType] * 10;
+
+    return this.planSelectorPlanBasicCost;
   }
 
   generateTotalCost() {
-    return this.generateBasicCost() + this.generateAddOnsCost();
+    this.totalCost = this.generateBasicCost() + this.generateAddOnsCost();
+    return this.totalCost;
   }
 
-  nextStep() {
-    if (this.step == 1) {
-      if (!this.personalInfoValid) {
-        return;
-      } else {
-        this.isBackButtonEnabled = true;
-      }
-    }
-    if (this.step == 2) {
-      if (!this.planSelectorIsAnyPlanSelected) {
-        return;
-      }
-    }
-    if (this.step == 3) {
-      this.planBasicCost = this.generateBasicCost();
-      this.addOnsCost = this.generateAddOnsCost();
-      this.totalCost = this.generateTotalCost();
-      this.NextButtonText = 'Confirm';
-      this.isLastStep = true;
-    }
-    if (this.step == 4) {
-      this.isNextButtonEnabled = false;
-      this.isBackButtonEnabled = false;
-    }
-    this.step++;
-  }
-
-  previousStep() {
-    if (this.step == 2) {
-      this.isBackButtonEnabled = false;
-      this.personalInfoValid = false;
-      this.planSelectorIsAnyPlanSelected = false;
-    }
-    if (this.step == 3) {
-      this.planSelectorIsAnyPlanSelected = false;
-    }
-    if (this.step == 4) {
-      this.addOnSelectorOnlineServiceSelected = false;
-      this.addOnSelectorLargerStorageSelected = false;
-      this.addOnSelectorCustomizableProfileSelected = false;
-      this.NextButtonText = 'Next Step';
-      this.isLastStep = false;
-    }
-    this.step--;
+  recieveCurrentStep(currentStep: number) {
+    this.step = currentStep;
   }
 
   recieveName(childName: string) {
@@ -130,6 +86,12 @@ export class AppComponent {
 
   recieveValidity(childValidity: boolean) {
     this.personalInfoValid = childValidity;
+  }
+
+  recievePersonalDetails(details: personalDetails) {
+    console.log(details.name);
+    console.log(details.email);
+    console.log(details.phone);
   }
 
   recievePlanType(planType: string) {

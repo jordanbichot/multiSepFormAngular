@@ -12,6 +12,7 @@
       (outputEmail)="recieveEmail($event)"
       (outputPhone)="recievePhone($event)"
       (outputValidity)="recieveValidity($event)"
+      (outputPersonalDetails)="recievePersonalDetails($event)"
     ></app-personal-info>
 
     <app-plan-selector
@@ -55,22 +56,12 @@
       class="main-component__card__menus"
     ></app-thank-you>
 
-    <div class="main-component__card__flow-buttons" *ngIf="step < 5">
-      <button
-        *ngIf="isBackButtonEnabled"
-        class="buttons main-component__card__flow-buttons__go-back"
-        (click)="previousStep()"
-      >
-        Go Back
-      </button>
-      <button
-        *ngIf="isNextButtonEnabled"
-        class="buttons main-component__card__flow-buttons__next-step"
-        (click)="nextStep()"
-        [class.last-step]="isLastStep"
-      >
-        {{ NextButtonText }}
-      </button>
-    </div>
+    <app-buttons-control
+      *ngIf="step < 5"
+      class="main-component__card__flow-buttons"
+      [isPersonalInfoValid]="personalInfoValid"
+      [isPlanSelectorValid]="planSelectorIsAnyPlanSelected"
+      (outputStep)="recieveCurrentStep($event)"
+    ></app-buttons-control>
   </div>
 </main>

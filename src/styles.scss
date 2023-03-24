@@ -32,3 +32,13 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.buttons {
+  width: 120px;
+  height: 45px;
+
+  background-color: variables.$color-primary-marine-blue;
+  color: variables.$color-neutral-alabaster;
+  border: none;
+  border-radius: 0.5rem;
+}

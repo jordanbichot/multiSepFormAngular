@@ -2,8 +2,8 @@ import {
   Component,
   Output,
   EventEmitter,
-  OnChanges,
-  SimpleChanges,
+  OnInit,
+  OnDestroy,
   Input,
 } from '@angular/core';
 
@@ -12,13 +12,17 @@ import {
   templateUrl: './plan-selector.component.html',
   styleUrls: ['./plan-selector.component.scss'],
 })
-export class PlanSelectorComponent {
+export class PlanSelectorComponent implements OnInit, OnDestroy {
   @Output() outputPlanType = new EventEmitter<string>();
-
   @Output() outputIsFacturationCycleMonthly = new EventEmitter<boolean>();
   @Output() outputIsFacturationCycleYearly = new EventEmitter<boolean>();
-
   @Output() outputIsValid = new EventEmitter<boolean>();
+
+  ngOnInit(): void {
+    this.outputIsValid.emit(false);
+  }
+
+  ngOnDestroy(): void {}
 
   planType: string = '';
   planBasicCost: number = 0;

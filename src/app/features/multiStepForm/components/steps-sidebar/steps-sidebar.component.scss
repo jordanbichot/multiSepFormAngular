@@ -1,8 +1,8 @@
-@use "../../assets/styles/variables";
-@use "../../styles.scss";
+@use "../../../../../assets/styles/variables";
+@use "../../../../../styles.scss";
 
 .steps__card {
-  background-image: url("../../assets/images/bg-sidebar-desktop.svg");
+  background-image: url("../../../../../assets/images/bg-sidebar-desktop.svg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 274px;
@@ -64,7 +64,7 @@
 
 @media screen and (max-width: 376px) {
   .steps__card {
-    background-image: url("../../assets/images/bg-sidebar-mobile.svg");
+    background-image: url("../../../../../assets/images/bg-sidebar-mobile.svg");
     width: 375px;
     height: 170px;
   }

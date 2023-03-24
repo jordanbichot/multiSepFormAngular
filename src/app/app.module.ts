@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { StepsSidebarComponent } from './steps-sidebar/steps-sidebar.component';
-import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { PlanSelectorComponent } from './plan-selector/plan-selector.component';
-import { AddOnsPickerComponent } from './add-ons-picker/add-ons-picker.component';
-import { FinishingUpComponent } from './finishing-up/finishing-up.component';
-import { ThankYouComponent } from './thank-you/thank-you.component';
+import { StepsSidebarComponent } from './features/multiStepForm/components/steps-sidebar/steps-sidebar.component';
+import { PersonalInfoComponent } from './features/multiStepForm/components/personal-info/personal-info.component';
+import { PlanSelectorComponent } from './features/multiStepForm/components/plan-selector/plan-selector.component';
+import { AddOnsPickerComponent } from './features/multiStepForm/components/add-ons-picker/add-ons-picker.component';
+import { FinishingUpComponent } from './features/multiStepForm/components/finishing-up/finishing-up.component';
+import { ThankYouComponent } from './features/multiStepForm/components/thank-you/thank-you.component';
 
 import {
   FormsModule,
@@ -20,6 +20,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ButtonsControlComponent } from './features/multiStepForm/components/buttons-control/buttons-control.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
     AddOnsPickerComponent,
     FinishingUpComponent,
     ThankYouComponent,
+    ButtonsControlComponent,
   ],
   imports: [
     BrowserModule,

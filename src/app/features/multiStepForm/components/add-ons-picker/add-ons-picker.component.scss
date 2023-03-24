@@ -1,5 +1,5 @@
-@use "../../assets/styles/variables";
-@use "../../styles.scss";
+@use "../../../../../assets/styles/variables";
+@use "../../../../../styles.scss";
 
 .pick-add-ons {
   @include styles.flex(column, 1rem);
