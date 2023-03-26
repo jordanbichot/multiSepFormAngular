@@ -1,56 +1,86 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  OnInit,
+  OnDestroy,
+  Output,
+} from '@angular/core';
+import { StepControlServiceService } from '../../services/step-control-service.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-buttons-control',
   templateUrl: './buttons-control.component.html',
   styleUrls: ['./buttons-control.component.scss'],
 })
-export class ButtonsControlComponent {
-  @Input() isPersonalInfoValid: boolean = false;
-  @Input() isPlanSelectorValid: boolean = false;
-  @Output() outputStep = new EventEmitter<number>();
+export class ButtonsControlComponent implements OnInit, OnDestroy {
+  constructor(
+    private stepControlService: StepControlServiceService,
+    private routerControl: Router
+  ) {}
 
+  nextButtonText: 'Next Step' | 'Confirm' = 'Next Step';
   step: number = 1;
-
-  nextButtonText: string = 'Next Step';
   isBackButtonEnabled: boolean = false;
   isNextButtonEnabled: boolean = true;
   isLastStep: boolean = false;
 
+  stepSubscription: Subscription = new Subscription();
+
+  ngOnInit(): void {
+    this.stepSubscription = this.stepControlService
+      .getCurrentStep$()
+      .subscribe((currentStep) => {
+        this.step = currentStep;
+        this.nextButtonText = this.step === 4 ? 'Confirm' : 'Next Step';
+        this.isLastStep = this.step === 4;
+
+        if (this.step === 1) {
+          this.routerControl.navigate(['']);
+        }
+        if (this.step === 2) {
+          this.routerControl.navigate(['planSelection']);
+        }
+        if (this.step === 3) {
+          this.routerControl.navigate(['addOnsSelection']);
+        }
+        if (this.step === 4) {
+          this.routerControl.navigate(['finishingUp']);
+        }
+        if (this.step === 5) {
+          this.routerControl.navigate(['thankYou']);
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.stepSubscription.unsubscribe();
+  }
+
   nextStep() {
     if (this.step === 1) {
-      if (!this.isPersonalInfoValid) {
+      if (!this.stepControlService.isCurrentStepCompleted) {
         return;
       } else {
         this.isBackButtonEnabled = true;
       }
     }
     if (this.step === 2) {
-      if (!this.isPlanSelectorValid) {
+      if (!this.stepControlService.isCurrentStepCompleted) {
         return;
       }
     }
-    if (this.step === 3) {
-      this.nextButtonText = 'Confirm';
-      this.isLastStep = true;
-    }
-    if (this.step === 4) {
-      this.isNextButtonEnabled = false;
-      this.isBackButtonEnabled = false;
-    }
-    this.step++;
-    this.outputStep.emit(this.step);
+    this.stepControlService.nextStep();
   }
 
   previousStep() {
     if (this.step === 2) {
       this.isBackButtonEnabled = false;
     }
-    if (this.step === 4) {
-      this.nextButtonText = 'Next Step';
-      this.isLastStep = false;
-    }
-    this.step--;
-    this.outputStep.emit(this.step);
+    this.stepControlService.previousStep();
   }
 }

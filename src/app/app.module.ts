@@ -21,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ButtonsControlComponent } from './features/multiStepForm/components/buttons-control/buttons-control.component';
+import { PlanBuilderServiceService } from './features/multiStepForm/services/plan-builder-service.service';
+import { StepControlServiceService } from './features/multiStepForm/services/step-control-service.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { ButtonsControlComponent } from './features/multiStepForm/components/but
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [PlanBuilderServiceService, StepControlServiceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,35 +1,59 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
+import { PlanBuilderServiceService } from '../../services/plan-builder-service.service';
+import { addOnDetails } from '../../models/addOnDetails';
 
 @Component({
   selector: 'app-add-ons-picker',
   templateUrl: './add-ons-picker.component.html',
   styleUrls: ['./add-ons-picker.component.scss'],
 })
-export class AddOnsPickerComponent {
-  @Input() isFacturationCycleMonthly = true;
-  @Input() isFacturationCycleYearly = false;
-  @Output() outputIsOnlineServiceSelected = new EventEmitter<boolean>();
-  @Output() outputIsLargerStorageSelected = new EventEmitter<boolean>();
-  @Output() outputIsCustomizableProfileSelected = new EventEmitter<boolean>();
+export class AddOnsPickerComponent implements OnInit, OnDestroy {
+  constructor(private planBuilderService: PlanBuilderServiceService) {}
 
-  isOnlineServiceSelected: boolean = false;
-  isLargerStorageSelected: boolean = false;
-  isCustomizableProfileSelected: boolean = false;
+  isFacturationCycleMonthly: boolean = true;
+  isFacturationCycleYearly: boolean = false;
+  availableAddOns: addOnDetails[] = [];
+  selectedAddOnIndexes: number[] = [];
 
-  selectOnlineService() {
-    this.isOnlineServiceSelected = !this.isOnlineServiceSelected;
-    this.outputIsOnlineServiceSelected.emit(this.isOnlineServiceSelected);
+  ngOnInit(): void {
+    this.isFacturationCycleMonthly =
+      this.planBuilderService.selectedPlan.basicPlan.facturationCycle ===
+      'Monthly'
+        ? true
+        : false;
+    this.isFacturationCycleYearly = !this.isFacturationCycleMonthly;
+    this.availableAddOns = this.planBuilderService.availableAddOns;
+
+    this.planBuilderService.selectedPlan.addOns = [];
   }
 
-  selectLargerStorage() {
-    this.isLargerStorageSelected = !this.isLargerStorageSelected;
-    this.outputIsLargerStorageSelected.emit(this.isLargerStorageSelected);
-  }
-
-  selectCustomizableProfile() {
-    this.isCustomizableProfileSelected = !this.isCustomizableProfileSelected;
-    this.outputIsCustomizableProfileSelected.emit(
-      this.isCustomizableProfileSelected
+  ngOnDestroy(): void {
+    this.selectedAddOnIndexes.sort();
+    this.selectedAddOnIndexes.map((index) =>
+      this.planBuilderService.selectedPlan.addOns.push(
+        this.availableAddOns[index]
+      )
     );
+  }
+
+  selectAddOn(index: number) {
+    if (this.selectedAddOnIndexes.includes(index)) {
+      this.selectedAddOnIndexes = this.selectedAddOnIndexes.filter(
+        (item) => item !== index
+      );
+    } else {
+      this.selectedAddOnIndexes.push(index);
+    }
+  }
+
+  isAddOnSelected(index: number) {
+    return this.selectedAddOnIndexes.includes(index);
   }
 }

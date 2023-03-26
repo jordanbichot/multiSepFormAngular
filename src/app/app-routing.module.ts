@@ -12,6 +12,11 @@ const routes: Routes = [
   { path: 'finishingUp', component: FinishingUpComponent },
   { path: 'thankYou', component: ThankYouComponent },
   { path: '', component: PersonalInfoComponent },
+  {
+    path: '**',
+    component: PersonalInfoComponent,
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

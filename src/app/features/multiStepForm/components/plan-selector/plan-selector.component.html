@@ -7,84 +7,24 @@
   </div>
   <div class="plan-selector__plans">
     <article
+      *ngFor="let plan of plansToChooseFrom; let i = index"
       class="plan-selector__plans__plan"
-      [class.selected_plan]="isArcadeSelected"
-      (click)="selectArcadePlan()"
+      (click)="selectPlan(i)"
+      [class.selected_plan]="isPlanSelected(i)"
     >
-      <img
-        class="plan-selector__plans__plan__icon"
-        src="../../assets/images/icon-arcade.svg"
-      />
-      <h3 class="plan-selector__plans__plan__plan-type">Arcade</h3>
+      <img class="plan-selector__plans__plan__icon" src="{{ plan.srcURL }}" />
+      <h3 class="plan-selector__plans__plan__plan-type">{{ plan.plan }}</h3>
       <p
         class="plan-selector__plans__plan__monthly-rate"
         *ngIf="isFacturationCycleMonthly"
       >
-        $9/mo
+        ${{ plan.monthlyCost }}{{ endingText }}
       </p>
       <p
         class="plan-selector__plans__plan__yearly-rate"
         *ngIf="isFacturationCycleYearly"
       >
-        $90/yr
-      </p>
-      <p
-        class="plan-selector__plans__plan__discount"
-        *ngIf="isFacturationCycleYearly"
-      >
-        2 months free
-      </p>
-    </article>
-    <article
-      class="plan-selector__plans__plan"
-      [class.selected_plan]="isAdvancedSelected"
-      (click)="selectAdvancedPlan()"
-    >
-      <img
-        class="plan-selector__plans__plan__icon"
-        src="../../assets/images/icon-advanced.svg"
-      />
-      <h3 class="plan-selector__plans__plan__plan-type">Advanced</h3>
-      <p
-        class="plan-selector__plans__plan__monthly-rate"
-        *ngIf="isFacturationCycleMonthly"
-      >
-        $12/mo
-      </p>
-      <p
-        class="plan-selector__plans__plan__yearly-rate"
-        *ngIf="isFacturationCycleYearly"
-      >
-        $120/yr
-      </p>
-      <p
-        class="plan-selector__plans__plan__discount"
-        *ngIf="isFacturationCycleYearly"
-      >
-        2 months free
-      </p>
-    </article>
-    <article
-      class="plan-selector__plans__plan"
-      [class.selected_plan]="isProSelected"
-      (click)="selectProPlan()"
-    >
-      <img
-        class="plan-selector__plans__plan__icon"
-        src="../../assets/images/icon-pro.svg"
-      />
-      <h3 class="plan-selector__plans__plan__plan-type">Pro</h3>
-      <p
-        class="plan-selector__plans__plan__monthly-rate"
-        *ngIf="isFacturationCycleMonthly"
-      >
-        $15/mo
-      </p>
-      <p
-        class="plan-selector__plans__plan__yearly-rate"
-        *ngIf="isFacturationCycleYearly"
-      >
-        $150/yr
+        ${{ plan.yearlyCost }}{{ endingText }}
       </p>
       <p
         class="plan-selector__plans__plan__discount"

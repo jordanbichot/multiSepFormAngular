@@ -27,64 +27,22 @@
     <article class="finishing-up__overall__selected-add-ons">
       <div
         class="finishing-up__overall__selected-add-ons__add-on"
-        *ngIf="isOnlineServiceSelected"
+        *ngFor="let addOn of selectedAddOns"
       >
         <p class="finishing-up__overall__selected-add-ons__add-on__name">
-          Online service
+          {{ addOn.addOnName }}
         </p>
         <p
           class="finishing-up__overall__selected-add-ons__add-on__price-monthly"
           *ngIf="isFacturationCycleMonthly"
         >
-          +1$/mo
+          +{{ addOn.addOnMonthlyCost }}$/mo
         </p>
         <p
           class="finishing-up__overall__selected-add-ons__add-on__price-yearly"
           *ngIf="!isFacturationCycleMonthly"
         >
-          +10$/yr
-        </p>
-      </div>
-
-      <div
-        class="finishing-up__overall__selected-add-ons__add-on"
-        *ngIf="isLargerStorageSelected"
-      >
-        <p class="finishing-up__overall__selected-add-ons__add-on__name">
-          Larger storage
-        </p>
-        <p
-          class="finishing-up__overall__selected-add-ons__add-on__price-monthly"
-          *ngIf="isFacturationCycleMonthly"
-        >
-          +2$/mo
-        </p>
-        <p
-          class="finishing-up__overall__selected-add-ons__add-on__price-yearly"
-          *ngIf="!isFacturationCycleMonthly"
-        >
-          +20$/yr
-        </p>
-      </div>
-
-      <div
-        class="finishing-up__overall__selected-add-ons__add-on"
-        *ngIf="isCustomizableProfileSelected"
-      >
-        <p class="finishing-up__overall__selected-add-ons__add-on__name">
-          Customizable profile
-        </p>
-        <p
-          class="finishing-up__overall__selected-add-ons__add-on__price-monthly"
-          *ngIf="isFacturationCycleMonthly"
-        >
-          +2$/mo
-        </p>
-        <p
-          class="finishing-up__overall__selected-add-ons__add-on__price-yearly"
-          *ngIf="!isFacturationCycleMonthly"
-        >
-          +20$/yr
+          +{{ addOn.addOnYearlyCost }}$/yr
         </p>
       </div>
     </article>
