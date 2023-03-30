@@ -1,0 +1,35 @@
+@use "/src/styles/variables";
+@use "/src/styles.scss";
+
+.thank-you {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  &__icon {
+    grid-row-start: 2;
+    place-self: center;
+  }
+  &__main-text {
+    grid-row-start: 3;
+    place-self: center;
+  }
+  &__description-text {
+    @include styles.secondary-text();
+    grid-row-start: 4;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .thank-you {
+    grid-template-rows: 0.5fr 1fr 1fr 1.5fr 0.5fr;
+    &__main-text {
+      font-size: 1.75rem;
+    }
+    &__description-text {
+      margin-top: 0;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+  }
+}

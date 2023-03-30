@@ -1,0 +1,117 @@
+@use "/src/styles/variables";
+@use "/src/styles.scss";
+
+.pick-add-ons {
+  @include styles.flex(column, 1rem);
+
+  &__description-text {
+    @include styles.secondary-text();
+  }
+
+  &__add-ons-container {
+    @include styles.flex(column, 1rem);
+
+    &__add-on {
+      background-color: variables.$color-neutral-white;
+      border: solid 1px variables.$color-neutral-light-gray;
+      border-radius: 0.25rem;
+      display: grid;
+      grid-template-columns: 1fr 4fr 1fr;
+      grid-template-rows: 1fr;
+      place-items: center;
+      padding: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        border: solid 1px variables.$color-primary-purplish-blue;
+      }
+
+      &::after {
+        content: "";
+        grid-column-start: 1;
+        grid-row-start: 1;
+        justify-self: left;
+
+        position: relative;
+        background-color: none;
+        z-index: 1;
+        width: 20px;
+        height: 20px;
+        border-radius: 0.25rem;
+        border-style: solid;
+        border-width: 1px;
+        border-color: variables.$color-neutral-light-gray;
+      }
+
+      &__checkbox {
+        cursor: pointer;
+        pointer-events: none;
+        grid-column-start: 1;
+        grid-row-start: 1;
+        justify-self: left;
+        width: 20px;
+        height: 20px;
+        z-index: 2;
+        opacity: 0;
+
+        &:checked {
+          opacity: 1;
+        }
+      }
+
+      &__text {
+        @include styles.flex(column, 0.25rem);
+        justify-self: start;
+        grid-column-start: 2;
+        &__name {
+          font-weight: 700;
+        }
+
+        &__description {
+          color: variables.$color-neutral-cool-gray;
+        }
+      }
+
+      &__monthly-price {
+        grid-column-start: 3;
+        grid-row-start: 1;
+        color: variables.$color-primary-purplish-blue;
+        justify-self: right;
+      }
+      &__yearly-price {
+        grid-column-start: 3;
+        grid-row-start: 1;
+        color: variables.$color-primary-purplish-blue;
+        justify-self: right;
+      }
+    }
+  }
+}
+
+.selected {
+  background-color: variables.$color-neutral-alabaster;
+  border: solid 1px variables.$color-primary-purplish-blue;
+}
+
+.non-visible {
+  display: none;
+}
+
+@media screen and (max-width: 376px) {
+  .pick-add-ons__add-ons-container__add-on {
+    &__text {
+      &__name {
+        font-size: 0.875rem;
+      }
+      &__description {
+        font-size: 0.75rem;
+      }
+    }
+    &__monthly-price {
+      font-size: 0.825rem;
+    }
+    &__yearly-price {
+      font-size: 0.825rem;
+    }
+  }
+}

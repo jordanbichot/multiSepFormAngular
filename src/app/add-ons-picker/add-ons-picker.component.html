@@ -1,0 +1,43 @@
+<section class="pick-add-ons">
+  <div class="pick-add-ons__description">
+    <h2 class="pick-add-ons__main-text">Pick add-ons</h2>
+    <p class="pick-add-ons__description-text">
+      Add-ons help enhance your gaming experience.
+    </p>
+  </div>
+
+  <div class="pick-add-ons__add-ons-container">
+    <article
+      *ngFor="let addOn of availableAddOns"
+      class="pick-add-ons__add-ons-container__add-on"
+      [class.selected]="isAddOnSelected(addOn.id)"
+      (click)="selectAddOn(addOn.id)"
+    >
+      <input
+        class="pick-add-ons__add-ons-container__add-on__checkbox"
+        type="checkbox"
+        [checked]="isAddOnSelected(addOn.id)"
+      />
+      <div class="pick-add-ons__add-ons-container__add-on__text">
+        <p class="pick-add-ons__add-ons-container__add-on__text__name">
+          {{ addOn.name }}
+        </p>
+        <p class="pick-add-ons__add-ons-container__add-on__text__description">
+          {{ addOn.description }}
+        </p>
+      </div>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__monthly-price"
+        *ngIf="isFacturationCycleMonthly"
+      >
+        +{{ addOn.cost }}$/mo
+      </p>
+      <p
+        class="pick-add-ons__add-ons-container__add-on__yearly-price"
+        *ngIf="!isFacturationCycleMonthly"
+      >
+        +{{ addOn.cost * 10 }}$/yr
+      </p>
+    </article>
+  </div>
+</section>

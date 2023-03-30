@@ -1,0 +1,16 @@
+<div class="card__flow-buttons" *ngIf="activeStep$ | async">
+  <button
+    *ngIf="isBackButtonEnabled"
+    class="buttons card__flow-buttons__go-back"
+    (click)="previousStep()"
+  >
+    Go Back
+  </button>
+  <button
+    class="buttons card__flow-buttons__next-step"
+    (click)="nextStep()"
+    [class.last-step]="isLastStep"
+  >
+    {{ nextButtonText }}
+  </button>
+</div>

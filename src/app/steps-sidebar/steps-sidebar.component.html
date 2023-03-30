@@ -1,0 +1,20 @@
+<section class="steps__card">
+  <ng-container *ngIf="activeStep$ | async as activeStep">
+    <ul class="steps__list">
+      <li class="steps__list__element" *ngFor="let step of steps">
+        <button
+          class="steps__list__button"
+          [class.activeStep]="activeStep === 1"
+        >
+          {{ step.stepCount }}
+        </button>
+        <div class="steps__list__text">
+          <p class="steps__list__text__number">{{ step.stepName }}</p>
+          <p class="steps__list__text__description">
+            {{ step.stepDescription }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+</section>

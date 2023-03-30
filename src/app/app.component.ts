@@ -1,7 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { client } from './features/multiStepForm/models/clientType';
-import { StepControlServiceService } from './features/multiStepForm/services/step-control-service.service';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { StepControlService } from './steps-sidebar/data-access/step-control.service';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +8,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  inSelectionProcess: boolean = true;
-  stepSubscription: Subscription;
-  constructor(private stepControlService: StepControlServiceService) {
-    this.stepSubscription = stepControlService
-      .getCurrentStep$()
-      .subscribe((step) => {
-        if (step === 5) {
-          this.inSelectionProcess = false;
-          this.stepSubscription.unsubscribe();
-        }
-      });
-  }
+  activeStep$ = this.stepControlService.currentStep$;
+  constructor(private stepControlService: StepControlService) {}
 }

@@ -1,0 +1,56 @@
+@use "/src/styles/variables";
+@use "/src/styles.scss";
+
+.card {
+  &__flow-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    &__next-step {
+      grid-column-start: 2;
+      justify-self: right;
+    }
+
+    &__go-back {
+      grid-column-start: 1;
+      justify-self: left;
+      background-color: transparent;
+      color: variables.$color-neutral-cool-gray;
+    }
+
+    &__next-step:hover {
+      cursor: pointer;
+      background-color: variables.$color-primary-light-marine-blue;
+    }
+
+    &__go-back:hover {
+      cursor: pointer;
+      color: variables.$color-primary-marine-blue;
+      background-color: transparent;
+      font-weight: 500;
+    }
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .card {
+    &__flow-buttons {
+      grid-row-start: 4;
+      grid-column-start: 1;
+      height: 100%;
+      padding: 12px;
+      background-color: variables.$color-neutral-white;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      &__go-back {
+        grid-column-start: 1;
+      }
+      &__next-step {
+        grid-column-start: 2;
+      }
+    }
+  }
+}

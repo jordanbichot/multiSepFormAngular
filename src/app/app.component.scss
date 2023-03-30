@@ -1,5 +1,5 @@
-@use "../assets/styles/variables";
-@use "../styles.scss";
+@use "/src/styles/variables";
+@use "/src/styles.scss";
 
 .main-component {
   background-color: variables.$color-neutral-magnolia;
@@ -46,16 +46,6 @@
     opacity: 0.6;
     background-color: variables.$color-primary-purplish-blue;
   }
-}
-
-.inactive {
-  border: none;
-  background-color: transparent;
-  color: variables.$color-neutral-cool-gray;
-}
-
-.hidden {
-  visibility: hidden;
 }
 
 @media screen and (max-width: 376px) {

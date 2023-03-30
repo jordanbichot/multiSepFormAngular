@@ -9,7 +9,7 @@
     </div>
 
     <app-buttons-control
-      *ngIf="inSelectionProcess"
+      *ngIf="(activeStep$ | async)! <= 5"
       class="main-component__card__flow-buttons"
     ></app-buttons-control>
   </div>
