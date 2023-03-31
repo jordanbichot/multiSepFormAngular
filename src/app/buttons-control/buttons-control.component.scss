@@ -54,3 +54,11 @@
     }
   }
 }
+
+button.last-step {
+  background-color: variables.$color-primary-purplish-blue;
+  &:hover {
+    background-color: variables.$color-primary-purplish-blue;
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.4);
+  }
+}
