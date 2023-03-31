@@ -1,35 +1,59 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
+import { PlanBuilderService } from '../plan-selector/data-access/plan-builder.service';
+import { addOnDetails } from './models/addOnDetails';
+import { AvailableResourcesProviderService } from '../plan-selector/data-access/available-resources-provider.service';
 
 @Component({
   selector: 'app-add-ons-picker',
   templateUrl: './add-ons-picker.component.html',
   styleUrls: ['./add-ons-picker.component.scss'],
 })
-export class AddOnsPickerComponent {
-  @Input() isFacturationCycleMonthly = true;
-  @Input() isFacturationCycleYearly = false;
-  @Output() outputIsOnlineServiceSelected = new EventEmitter<boolean>();
-  @Output() outputIsLargerStorageSelected = new EventEmitter<boolean>();
-  @Output() outputIsCustomizableProfileSelected = new EventEmitter<boolean>();
+export class AddOnsPickerComponent implements OnInit, OnDestroy {
+  constructor(
+    private planBuilderService: PlanBuilderService,
+    private availableResourcesProviderService: AvailableResourcesProviderService
+  ) {}
 
-  isOnlineServiceSelected: boolean = false;
-  isLargerStorageSelected: boolean = false;
-  isCustomizableProfileSelected: boolean = false;
+  isFacturationCycleMonthly: boolean = true;
+  availableAddOns: addOnDetails[] = [];
+  selectedAddOnIds: number[] = [];
 
-  selectOnlineService() {
-    this.isOnlineServiceSelected = !this.isOnlineServiceSelected;
-    this.outputIsOnlineServiceSelected.emit(this.isOnlineServiceSelected);
+  ngOnInit(): void {
+    this.isFacturationCycleMonthly =
+      this.planBuilderService.isFacturationCycleMonthly;
+    this.availableAddOns =
+      this.availableResourcesProviderService.getAvailableAddOns();
+    this.selectedAddOnIds = [];
+    this.planBuilderService.selectedAddOns = [];
   }
 
-  selectLargerStorage() {
-    this.isLargerStorageSelected = !this.isLargerStorageSelected;
-    this.outputIsLargerStorageSelected.emit(this.isLargerStorageSelected);
-  }
-
-  selectCustomizableProfile() {
-    this.isCustomizableProfileSelected = !this.isCustomizableProfileSelected;
-    this.outputIsCustomizableProfileSelected.emit(
-      this.isCustomizableProfileSelected
+  ngOnDestroy(): void {
+    this.selectedAddOnIds.sort();
+    this.selectedAddOnIds.map((addOnId) =>
+      this.planBuilderService.selectedAddOns.push(
+        this.availableAddOns.find((addOn) => addOn.id === addOnId)!
+      )
     );
+  }
+
+  selectAddOn(selectedAddOnId: number) {
+    if (this.selectedAddOnIds.includes(selectedAddOnId)) {
+      this.selectedAddOnIds = this.selectedAddOnIds.filter(
+        (item) => item !== selectedAddOnId
+      );
+    } else {
+      this.selectedAddOnIds.push(selectedAddOnId);
+    }
+  }
+
+  isAddOnSelected(selectedAddOnId: number) {
+    return this.selectedAddOnIds.includes(selectedAddOnId);
   }
 }

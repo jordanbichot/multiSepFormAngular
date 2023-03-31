@@ -1,6 +1,5 @@
-@use "../../assets/styles/variables";
-@use "../../styles.scss";
-
+@use "/src/styles/variables";
+@use "/src/styles.scss";
 .plan-selector {
   @include styles.flex(column, 1rem);
 

@@ -1,5 +1,5 @@
-@use "../../assets/styles/variables";
-@use "../../styles.scss";
+@use "/src/styles/variables";
+@use "/src/styles.scss";
 
 .steps__card {
   background-image: url("../../assets/images/bg-sidebar-desktop.svg");
@@ -26,8 +26,8 @@
     border-style: solid;
 
     background-color: transparent;
-    width: 1.775rem;
-    height: 1.775rem;
+    width: 1.8rem;
+    height: 1.8rem;
     border-radius: 1rem;
     text-align: center;
     justify-content: center;

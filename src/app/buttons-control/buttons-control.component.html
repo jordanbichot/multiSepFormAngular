@@ -1,0 +1,16 @@
+<div class="card__flow-buttons" *ngIf="activeStep$ | async as step">
+  <button
+    *ngIf="step > 1"
+    class="buttons card__flow-buttons__go-back"
+    (click)="previousStep()"
+  >
+    Go Back
+  </button>
+  <button
+    class="buttons card__flow-buttons__next-step"
+    (click)="nextStep()"
+    [class.last-step]="step === 4"
+  >
+    {{ step !== 4 ? "Next Step" : "Confirm" }}
+  </button>
+</div>

@@ -2,71 +2,56 @@ import {
   Component,
   Output,
   EventEmitter,
-  OnChanges,
-  SimpleChanges,
+  OnInit,
+  OnDestroy,
   Input,
 } from '@angular/core';
-
+import { StepControlService } from '../steps-sidebar/data-access/step-control.service';
+import { PlanBuilderService } from './data-access/plan-builder.service';
+import { basicPlanDetails } from './models/basic-plan-details';
+import { AvailableResourcesProviderService } from './data-access/available-resources-provider.service';
 @Component({
   selector: 'app-plan-selector',
   templateUrl: './plan-selector.component.html',
   styleUrls: ['./plan-selector.component.scss'],
 })
-export class PlanSelectorComponent {
-  @Output() outputPlanType = new EventEmitter<string>();
+export class PlanSelectorComponent implements OnInit, OnDestroy {
+  public plansToChooseFrom: basicPlanDetails[] = [];
 
-  @Output() outputIsFacturationCycleMonthly = new EventEmitter<boolean>();
-  @Output() outputIsFacturationCycleYearly = new EventEmitter<boolean>();
+  public endingText: '/mo' | '/yr' = '/mo';
+  public selectedPlanId: number = -1;
+  public isFacturationCycleMonthly: boolean = true;
 
-  @Output() outputIsValid = new EventEmitter<boolean>();
+  constructor(
+    private stepControlService: StepControlService,
+    private planBuilderService: PlanBuilderService,
+    private availableResourcesProviderService: AvailableResourcesProviderService
+  ) {}
 
-  planType: string = '';
-  planBasicCost: number = 0;
+  ngOnInit(): void {
+    this.stepControlService.isCurrentStepCompleted = false;
+    this.plansToChooseFrom =
+      this.availableResourcesProviderService.getAvailablePlans();
+  }
 
-  isFacturationCycleMonthly: boolean = true;
-  isFacturationCycleYearly: boolean = false;
-
-  isArcadeSelected: boolean = false;
-  isAdvancedSelected: boolean = false;
-  isProSelected: boolean = false;
-
-  isValid: boolean = false;
-
-  emitOutputs() {
-    this.outputIsFacturationCycleMonthly.emit(this.isFacturationCycleMonthly);
-    this.outputIsFacturationCycleYearly.emit(this.isFacturationCycleYearly);
-    this.outputPlanType.emit(this.planType);
-    this.outputIsValid.emit(this.isValid);
+  ngOnDestroy(): void {
+    this.planBuilderService.selectedPlan =
+      this.availableResourcesProviderService.getPlanById(this.selectedPlanId)!;
+    this.planBuilderService.isFacturationCycleMonthly =
+      this.isFacturationCycleMonthly;
   }
 
   toggleFacturationCycle() {
     this.isFacturationCycleMonthly = !this.isFacturationCycleMonthly;
-    this.isFacturationCycleYearly = !this.isFacturationCycleYearly;
-    this.emitOutputs();
+    this.endingText = this.isFacturationCycleMonthly ? '/mo' : '/yr';
   }
 
-  selectArcadePlan() {
-    this.isValid = true;
-    this.isArcadeSelected = true;
-    this.isAdvancedSelected = false;
-    this.isProSelected = false;
-    this.planType = 'Arcade';
-    this.emitOutputs();
+  selectPlan(planId: number) {
+    this.selectedPlanId = planId;
+    this.stepControlService.isCurrentStepCompleted = true;
   }
-  selectAdvancedPlan() {
-    this.isValid = true;
-    this.isArcadeSelected = false;
-    this.isAdvancedSelected = true;
-    this.isProSelected = false;
-    this.planType = 'Advanced';
-    this.emitOutputs();
-  }
-  selectProPlan() {
-    this.isValid = true;
-    this.isArcadeSelected = false;
-    this.isAdvancedSelected = false;
-    this.isProSelected = true;
-    this.planType = 'Pro';
-    this.emitOutputs();
+
+  isPlanSelected(planId: number) {
+    return planId === this.selectedPlanId;
   }
 }

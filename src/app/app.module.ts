@@ -1,16 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { StepsSidebarComponent } from './steps-sidebar/steps-sidebar.component';
-import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { PlanSelectorComponent } from './plan-selector/plan-selector.component';
-import { AddOnsPickerComponent } from './add-ons-picker/add-ons-picker.component';
-import { FinishingUpComponent } from './finishing-up/finishing-up.component';
-import { ThankYouComponent } from './thank-you/thank-you.component';
-
 import {
   FormsModule,
   FormControl,
@@ -19,28 +10,31 @@ import {
 } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PlanBuilderService } from './plan-selector/data-access/plan-builder.service';
+import { StepControlService } from './steps-sidebar/data-access/step-control.service';
+import { AddOnsPickerModule } from './add-ons-picker/add-ons-picker.module';
+import { ButtonsControlModule } from './buttons-control/buttons-control.module';
+import { FinishingUpModule } from './finishing-up/finishing-up.module';
+import { PersonalInfoModule } from './personal-info/personal-info.module';
+import { PlanSelectorModule } from './plan-selector/plan-selector.module';
+import { StepsModule } from './steps-sidebar/steps.module';
+import { ThankYouModule } from './thank-you/thank-you.module';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StepsSidebarComponent,
-    PersonalInfoComponent,
-    PlanSelectorComponent,
-    AddOnsPickerComponent,
-    FinishingUpComponent,
-    ThankYouComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
+    BrowserModule,
+    StepsModule,
+    ButtonsControlModule,
+    PersonalInfoModule,
+    PlanSelectorModule,
+    AddOnsPickerModule,
+    FinishingUpModule,
+    ThankYouModule,
   ],
-  providers: [],
+  providers: [PlanBuilderService, StepControlService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

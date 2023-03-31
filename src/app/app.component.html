@@ -2,75 +2,15 @@
   <div class="main-component__card">
     <app-steps-sidebar
       class="main-component__card__sidebar"
-      [activeStep]="step"
     ></app-steps-sidebar>
 
-    <app-personal-info
-      *ngIf="step == 1"
-      class="main-component__card__menus"
-      (outputName)="recieveName($event)"
-      (outputEmail)="recieveEmail($event)"
-      (outputPhone)="recievePhone($event)"
-      (outputValidity)="recieveValidity($event)"
-    ></app-personal-info>
-
-    <app-plan-selector
-      *ngIf="step == 2"
-      class="main-component__card__menus"
-      (outputPlanType)="recievePlanType($event)"
-      (outputIsFacturationCycleMonthly)="
-        recieveIsFacturationCycleMonthly($event)
-      "
-      (outputIsFacturationCycleYearly)="recieveIsFacturationCycleYearly($event)"
-      (outputIsValid)="recievePlanSelectorValidity($event)"
-    ></app-plan-selector>
-
-    <app-add-ons-picker
-      *ngIf="step == 3"
-      class="main-component__card__menus"
-      [isFacturationCycleMonthly]="planSelectorIsFacturationCycleMonthly"
-      [isFacturationCycleYearly]="planSelectorIsFacturationCycleYearly"
-      (outputIsOnlineServiceSelected)="recieveAddOnOnlineService($event)"
-      (outputIsLargerStorageSelected)="recieveAddOnLargerStorage($event)"
-      (outputIsCustomizableProfileSelected)="
-        recieveAddOnCustomizableProfile($event)
-      "
-    ></app-add-ons-picker>
-
-    <app-finishing-up
-      *ngIf="step == 4"
-      class="main-component__card__menus"
-      [selectedPlan]="planSelectorPlanType"
-      [isFacturationCycleMonthly]="planSelectorIsFacturationCycleMonthly"
-      [isOnlineServiceSelected]="addOnSelectorOnlineServiceSelected"
-      [isLargerStorageSelected]="addOnSelectorLargerStorageSelected"
-      [isCustomizableProfileSelected]="addOnSelectorCustomizableProfileSelected"
-      [planBasicCost]="planBasicCost"
-      [totalCost]="totalCost"
-      (outputChangePlan)="recieveFinishingUpChangePlan()"
-    ></app-finishing-up>
-
-    <app-thank-you
-      *ngIf="step == 5"
-      class="main-component__card__menus"
-    ></app-thank-you>
-
-    <div class="main-component__card__flow-buttons" *ngIf="step < 5">
-      <button
-        *ngIf="isBackButtonEnabled"
-        class="buttons main-component__card__flow-buttons__go-back"
-        (click)="previousStep()"
-      >
-        Go Back
-      </button>
-      <button
-        *ngIf="isNextButtonEnabled"
-        class="buttons main-component__card__flow-buttons__next-step"
-        (click)="nextStep()"
-        [class.last-step]="isLastStep"
-      >
-        {{ NextButtonText }}
-      </button>
+    <div class="main-component__card__menus">
+      <router-outlet></router-outlet>
     </div>
+
+    <app-buttons-control
+      *ngIf="(activeStep$ | async)! <= 4"
+      class="main-component__card__flow-buttons"
+    ></app-buttons-control>
   </div>
 </main>

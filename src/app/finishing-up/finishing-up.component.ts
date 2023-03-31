@@ -1,4 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PlanBuilderService } from '../plan-selector/data-access/plan-builder.service';
+import { StepControlService } from '../steps-sidebar/data-access/step-control.service';
+import { addOnDetails } from '../add-ons-picker/models/addOnDetails';
+import { AvailableResourcesProviderService } from '../plan-selector/data-access/available-resources-provider.service';
 
 @Component({
   selector: 'app-finishing-up',
@@ -6,27 +10,36 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./finishing-up.component.scss'],
 })
 export class FinishingUpComponent implements OnInit {
-  @Input() selectedPlan = '';
-  @Input() isFacturationCycleMonthly = true;
-  @Input() isOnlineServiceSelected = false;
-  @Input() isLargerStorageSelected = false;
-  @Input() isCustomizableProfileSelected = false;
-  selectedFacturationCycle: string = 'monthly';
-  costTextEnding: string = '/mo';
-  totalCostTextPer: string = 'month';
-  @Input() planBasicCost = 0;
-  @Input() totalCost = 0;
-  @Output() outputChangePlan = new EventEmitter<void>();
+  public selectedPlan: string = '';
+  public isFacturationCycleMonthly = true;
+  public planBasicCost: number = 0;
+  public selectedAddOns: addOnDetails[] = [];
+  public selectedFacturationCycle: string = 'monthly';
+  public costTextEnding: string = '/mo';
+  public totalCostTextPer: string = 'month';
+  public totalCost: number = 0;
 
-  changePlan() {
-    this.outputChangePlan.emit();
-  }
+  constructor(
+    private planBuilderService: PlanBuilderService,
+    private stepControlService: StepControlService,
+    private availableResourcesProviderService: AvailableResourcesProviderService
+  ) {}
 
   ngOnInit(): void {
-    if (!this.isFacturationCycleMonthly) {
-      this.costTextEnding = '/yr';
-      this.totalCostTextPer = 'year';
-      this.selectedFacturationCycle = 'yearly';
-    }
+    this.selectedPlan = this.planBuilderService.selectedPlan.planName;
+    this.isFacturationCycleMonthly =
+      this.planBuilderService.isFacturationCycleMonthly;
+    this.planBasicCost = this.planBuilderService.getBasicCost();
+    this.selectedAddOns = this.planBuilderService.selectedAddOns;
+    this.selectedFacturationCycle = this.isFacturationCycleMonthly
+      ? 'monthly'
+      : 'yearly';
+    this.costTextEnding = this.isFacturationCycleMonthly ? '/mo' : '/yr';
+    this.totalCostTextPer = this.isFacturationCycleMonthly ? 'month' : 'year';
+    this.totalCost = this.planBuilderService.getTotalCost();
+  }
+
+  changePlan() {
+    this.stepControlService.goToStep(2);
   }
 }

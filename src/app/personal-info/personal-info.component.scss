@@ -1,9 +1,6 @@
-@use "../../assets/styles/variables";
-@use "../../styles.scss";
-
+@use "/src/styles/variables";
+@use "/src/styles.scss";
 .personal-info {
-  @include styles.flex(column, 1rem);
-
   color: variables.$color-primary-marine-blue;
 
   &__main-text {
@@ -33,8 +30,4 @@
 
     font-weight: 500;
   }
-}
-
-.warning {
-  border-color: variables.$color-primary-strawberry-red;
 }

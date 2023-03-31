@@ -5,36 +5,48 @@
       Please provide your name, email address, and phone number.
     </p>
   </div>
-
-  <div class="personal-info__form">
+  <form class="personal-info__form" [formGroup]="form">
     <label class="personal-info__form__text__label">Name</label>
     <mat-form-field appearance="outline" class="personal-info__form__field">
-      <input matInput placeholder="e.g. Stephen King" [formControl]="name" />
+      <input
+        matInput
+        placeholder="e.g. Stephen King"
+        name="name"
+        formControlName="name"
+      />
     </mat-form-field>
 
     <div class="personal-info__form__text">
       <label class="personal-info__form__text__label">Email Address</label>
-      <mat-error *ngIf="email.touched && email.invalid">{{
-        getEmailErrorMessage()
-      }}</mat-error>
+      <mat-error
+        *ngIf="form.controls.email.touched && form.controls.email.invalid"
+        >{{ getEmailErrorMessage() }}
+      </mat-error>
     </div>
     <mat-form-field appearance="outline" class="personal-info__form__field">
       <input
         matInput
         placeholder="e.g. stephenking@lorem.com"
-        [formControl]="email"
+        name="email"
+        formControlName="email"
       />
     </mat-form-field>
 
     <div class="personal-info__form__text">
       <label class="personal-info__form__text__label">Phone Number</label>
-      <mat-error *ngIf="phone.touched && phone.invalid">{{
-        getPhoneErrorMessage()
-      }}</mat-error>
+      <mat-error
+        *ngIf="form.controls.phone.touched && form.controls.phone.invalid"
+        >{{ getPhoneErrorMessage() }}</mat-error
+      >
     </div>
     <mat-form-field appearance="outline" class="personal-info__form__field">
-      <span matTextPrefix *ngIf="phone.value != ''">+53 </span>
-      <input matInput placeholder="e.g. +1 234 567 890" [formControl]="phone" />
+      <span matTextPrefix *ngIf="form.controls.phone.value != ''">+53 </span>
+      <input
+        matInput
+        placeholder="e.g. +1 234 567 890"
+        name="phone"
+        formControlName="phone"
+      />
     </mat-form-field>
-  </div>
+  </form>
 </section>
