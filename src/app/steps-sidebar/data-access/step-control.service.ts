@@ -30,19 +30,19 @@ export class StepControlService {
   }
 
   private updateRoutes() {
-    if (Number(this.currentStep) === 1) {
+    if (this.currentStep.value === 1) {
       this.routerControl.navigate(['']);
     }
-    if (Number(this.currentStep) === 2) {
+    if (this.currentStep.value === 2) {
       this.routerControl.navigate(['planSelection']);
     }
-    if (Number(this.currentStep) === 3) {
+    if (this.currentStep.value === 3) {
       this.routerControl.navigate(['addOnsSelection']);
     }
-    if (Number(this.currentStep) === 4) {
+    if (this.currentStep.value === 4) {
       this.routerControl.navigate(['finishingUp']);
     }
-    if (Number(this.currentStep) === 5) {
+    if (this.currentStep.value === 5) {
       this.routerControl.navigate(['thankYou']);
     }
   }

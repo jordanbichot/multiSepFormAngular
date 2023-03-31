@@ -4,7 +4,11 @@
       <li class="steps__list__element" *ngFor="let step of steps">
         <button
           class="steps__list__button"
-          [class.activeStep]="activeStep === 1"
+          [class.activeStep]="
+            activeStep <= 4
+              ? activeStep === step.stepCount
+              : activeStep === step.stepCount + 1
+          "
         >
           {{ step.stepCount }}
         </button>
