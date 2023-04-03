@@ -7,8 +7,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { PlanBuilderService } from '../plan-selector/data-access/plan-builder.service';
-import { addOnDetails } from './models/addOnDetails';
+import { AddOnDetails } from './models/add-on-details';
 import { AvailableResourcesProviderService } from '../plan-selector/data-access/available-resources-provider.service';
+import { StepControlService } from '../steps-sidebar/data-access/step-control.service';
 
 @Component({
   selector: 'app-add-ons-picker',
@@ -16,18 +17,19 @@ import { AvailableResourcesProviderService } from '../plan-selector/data-access/
   styleUrls: ['./add-ons-picker.component.scss'],
 })
 export class AddOnsPickerComponent implements OnInit, OnDestroy {
+  public stepInfo = this.stepControlService.getStepInfo(3);
+  public isFacturationCycleMonthly$ =
+    this.planBuilderService.isFacturationCycleMonthly$;
+  public availableAddOns: AddOnDetails[] = [];
+  public selectedAddOnIds: number[] = [];
+
   constructor(
     private planBuilderService: PlanBuilderService,
-    private availableResourcesProviderService: AvailableResourcesProviderService
+    private availableResourcesProviderService: AvailableResourcesProviderService,
+    private stepControlService: StepControlService
   ) {}
 
-  isFacturationCycleMonthly: boolean = true;
-  availableAddOns: addOnDetails[] = [];
-  selectedAddOnIds: number[] = [];
-
   ngOnInit(): void {
-    this.isFacturationCycleMonthly =
-      this.planBuilderService.isFacturationCycleMonthly;
     this.availableAddOns =
       this.availableResourcesProviderService.getAvailableAddOns();
     this.selectedAddOnIds = [];
@@ -35,21 +37,18 @@ export class AddOnsPickerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.selectedAddOnIds.sort();
-    this.selectedAddOnIds.map((addOnId) =>
-      this.planBuilderService.selectedAddOns.push(
-        this.availableAddOns.find((addOn) => addOn.id === addOnId)!
-      )
-    );
+    this.planBuilderService.sortAddOns();
   }
 
   selectAddOn(selectedAddOnId: number) {
-    if (this.selectedAddOnIds.includes(selectedAddOnId)) {
+    if (this.planBuilderService.isAddOnSelected(selectedAddOnId)) {
+      this.planBuilderService.removeAddOnById(selectedAddOnId);
       this.selectedAddOnIds = this.selectedAddOnIds.filter(
-        (item) => item !== selectedAddOnId
+        (addOnId) => addOnId !== selectedAddOnId
       );
     } else {
-      this.selectedAddOnIds.push(selectedAddOnId);
+      this.planBuilderService.addAddOnById(selectedAddOnId);
+      this.selectedAddOnIds = [...this.selectedAddOnIds, selectedAddOnId];
     }
   }
 

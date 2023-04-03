@@ -1,15 +1,13 @@
 <main class="main-component">
   <div class="main-component__card">
-    <app-steps-sidebar
-      class="main-component__card__sidebar"
-    ></app-steps-sidebar>
+    <app-steper class="main-component__card__sidebar"></app-steper>
 
     <div class="main-component__card__menus">
       <router-outlet></router-outlet>
     </div>
 
     <app-buttons-control
-      *ngIf="(activeStep$ | async)! <= 4"
+      *ngIf="!(isFormEnded$ | async)"
       class="main-component__card__flow-buttons"
     ></app-buttons-control>
   </div>

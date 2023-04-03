@@ -8,6 +8,6 @@ import { StepControlService } from './steps-sidebar/data-access/step-control.ser
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  activeStep$ = this.stepControlService.currentStep$;
+  isFormEnded$ = this.stepControlService.isFormEnded$;
   constructor(private stepControlService: StepControlService) {}
 }

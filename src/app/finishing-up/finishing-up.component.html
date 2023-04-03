@@ -1,56 +1,13 @@
 <section class="finishing-up">
-  <div class="finishing-up__description">
-    <h2 class="finishing-up__main-text">Finishing up</h2>
-    <p class="finishing-up__description-text">
-      Double-check everything looks OK before confirming.
-    </p>
-  </div>
+  <app-step-header [stepText]="stepInfo.header"></app-step-header>
+
   <div class="finishing-up__overall">
-    <article class="finishing-up__overall__selected-plan">
-      <div class="finishing-up__overall__selected-plan__type">
-        <p class="finishing-up__overall__selected-plan__type__text">
-          {{ selectedPlan }} ({{ selectedFacturationCycle }})
-        </p>
-        <a
-          class="finishing-up__overall__selected-plan__type__change-link"
-          (click)="changePlan()"
-          >Change</a
-        >
-      </div>
-      <p class="finishing-up__overall__selected-plan__total-cost">
-        +${{ planBasicCost }}{{ costTextEnding }}
-      </p>
-    </article>
+    <app-selected-plan></app-selected-plan>
 
     <hr class="finishing-up__overall__division-line" />
 
-    <article class="finishing-up__overall__selected-add-ons">
-      <div
-        class="finishing-up__overall__selected-add-ons__add-on"
-        *ngFor="let addOn of selectedAddOns"
-      >
-        <p class="finishing-up__overall__selected-add-ons__add-on__name">
-          {{ addOn.name }}
-        </p>
-        <p
-          class="finishing-up__overall__selected-add-ons__add-on__price-monthly"
-          *ngIf="isFacturationCycleMonthly"
-        >
-          +{{ addOn.cost }}$/mo
-        </p>
-        <p
-          class="finishing-up__overall__selected-add-ons__add-on__price-yearly"
-          *ngIf="!isFacturationCycleMonthly"
-        >
-          +{{ addOn.cost * 10 }}$/yr
-        </p>
-      </div>
-    </article>
+    <app-selected-add-ons></app-selected-add-ons>
   </div>
-  <div class="finishing-up__total">
-    <p class="finishing-up__total__text">Total (per {{ totalCostTextPer }})</p>
-    <p class="finishing-up__total__price">
-      +${{ totalCost }}{{ costTextEnding }}
-    </p>
-  </div>
+
+  <app-total-cost></app-total-cost>
 </section>

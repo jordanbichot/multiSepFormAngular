@@ -1,0 +1,22 @@
+<article
+  class="selected-add-ons"
+  *ngIf="{ isMonthly: isFacturationCycleMonthly$ | async } as currentPlan"
+>
+  <div class="selected-add-ons__add-on" *ngFor="let addOn of selectedAddOns">
+    <p class="selected-add-ons__add-on__name">
+      {{ addOn.name }}
+    </p>
+    <p
+      class="selected-add-ons__add-on__price-monthly"
+      *ngIf="currentPlan.isMonthly"
+    >
+      +{{ addOn.cost }}$/mo
+    </p>
+    <p
+      class="selected-add-ons__add-on__price-yearly"
+      *ngIf="!currentPlan.isMonthly"
+    >
+      +{{ addOn.cost * 10 }}$/yr
+    </p>
+  </div>
+</article>

@@ -1,4 +1,4 @@
-export interface addOnDetails {
+export interface AddOnDetails {
   id: number;
   name: string;
   description: string;

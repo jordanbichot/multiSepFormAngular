@@ -1,0 +1,24 @@
+<div class="billing-selector">
+  <p
+    class="billing-selector__options"
+    id="monthly-selector"
+    [class.inactive]="!isFacturationStatusMonthly"
+  >
+    Monthly
+  </p>
+  <label class="switch">
+    <input
+      type="checkbox"
+      (click)="toggleFacturationCycle()"
+      id="switch__checkbox"
+    />
+    <span class="slider round"></span>
+  </label>
+  <p
+    class="billing-selector__options"
+    id="yearly-selector"
+    [class.inactive]="isFacturationStatusMonthly"
+  >
+    Yearly
+  </p>
+</div>

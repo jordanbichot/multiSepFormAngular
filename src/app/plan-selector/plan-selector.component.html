@@ -1,53 +1,7 @@
 <section class="plan-selector">
-  <div class="plan-selector__description">
-    <h2 class="plan-selector__main-text">Select your plan</h2>
-    <p class="plan-selector__description-text">
-      You have the option of monthly or yearly billing.
-    </p>
-  </div>
-  <div class="plan-selector__plans">
-    <article
-      *ngFor="let plan of plansToChooseFrom"
-      class="plan-selector__plans__plan"
-      (click)="selectPlan(plan.id)"
-      [class.selected_plan]="isPlanSelected(plan.id)"
-    >
-      <img class="plan-selector__plans__plan__icon" src="{{ plan.srcURL }}" />
-      <h3 class="plan-selector__plans__plan__plan-type">{{ plan.planName }}</h3>
-      <p
-        class="plan-selector__plans__plan__monthly-rate"
-        *ngIf="isFacturationCycleMonthly"
-      >
-        ${{ plan.price }}{{ endingText }}
-      </p>
-      <p
-        class="plan-selector__plans__plan__yearly-rate"
-        *ngIf="!isFacturationCycleMonthly"
-      >
-        ${{ plan.price * 10 }}{{ endingText }}
-      </p>
-      <p
-        class="plan-selector__plans__plan__discount"
-        *ngIf="!isFacturationCycleMonthly"
-      >
-        {{ plan.disccountText }}
-      </p>
-    </article>
-  </div>
-  <div class="plan-selector__billing-selector">
-    <p class="plan-selector__billing-selector__options" id="monthly-selector">
-      Monthly
-    </p>
-    <label class="switch">
-      <input
-        type="checkbox"
-        (click)="toggleFacturationCycle()"
-        id="switch__checkbox"
-      />
-      <span class="slider round"></span>
-    </label>
-    <p class="plan-selector__billing-selector__options" id="yearly-selector">
-      Yearly
-    </p>
-  </div>
+  <app-step-header [stepText]="stepInfo.header"></app-step-header>
+
+  <app-available-plans></app-available-plans>
+
+  <app-billing-selector></app-billing-selector>
 </section>

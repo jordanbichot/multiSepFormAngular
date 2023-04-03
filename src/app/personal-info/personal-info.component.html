@@ -1,10 +1,5 @@
 <section class="personal-info">
-  <div class="personal-info__description">
-    <h2 class="personal-info__main-text">Personal info</h2>
-    <p class="personal-info__description-text">
-      Please provide your name, email address, and phone number.
-    </p>
-  </div>
+  <app-step-header [stepText]="stepInfo.header"></app-step-header>
   <form class="personal-info__form" [formGroup]="form">
     <label class="personal-info__form__text__label">Name</label>
     <mat-form-field appearance="outline" class="personal-info__form__field">

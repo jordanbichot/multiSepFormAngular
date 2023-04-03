@@ -9,7 +9,7 @@
   <button
     class="buttons card__flow-buttons__next-step"
     (click)="nextStep()"
-    [class.last-step]="step === 4"
+    [class.last-step]="isLastStep$ | async"
   >
     {{ step !== 4 ? "Next Step" : "Confirm" }}
   </button>

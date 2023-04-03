@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddOnsPickerComponent } from './add-ons-picker.component';
-import { PlanBuilderService } from '../plan-selector/data-access/plan-builder.service';
+import { StepHeaderModule } from '../shared/step-header/step-header.module';
 
 @NgModule({
   declarations: [AddOnsPickerComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, StepHeaderModule],
   exports: [AddOnsPickerComponent],
-  providers: [PlanBuilderService],
 })
 export class AddOnsPickerModule {}

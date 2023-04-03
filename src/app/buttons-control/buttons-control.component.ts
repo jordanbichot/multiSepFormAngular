@@ -1,13 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  OnInit,
-  OnDestroy,
-  Output,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, map } from 'rxjs';
 import { StepControlService } from '../steps-sidebar/data-access/step-control.service';
@@ -19,11 +10,9 @@ import { StepControlService } from '../steps-sidebar/data-access/step-control.se
 })
 export class ButtonsControlComponent {
   public activeStep$ = this.stepControlService.currentStep$;
+  public isLastStep$ = this.stepControlService.isLastStep$;
 
-  constructor(
-    private stepControlService: StepControlService,
-    private routerControl: Router
-  ) {}
+  constructor(private stepControlService: StepControlService) {}
 
   public nextStep() {
     this.stepControlService.nextStep();

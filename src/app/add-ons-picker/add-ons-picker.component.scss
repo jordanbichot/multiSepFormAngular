@@ -16,7 +16,7 @@
       border: solid 1px variables.$color-neutral-light-gray;
       border-radius: 0.25rem;
       display: grid;
-      grid-template-columns: 1fr 4fr 1fr;
+      grid-template-columns: 1fr 6fr 1fr;
       grid-template-rows: 1fr;
       place-items: center;
       padding: 1rem;
@@ -101,10 +101,10 @@
   .pick-add-ons__add-ons-container__add-on {
     &__text {
       &__name {
-        font-size: 0.875rem;
+        font-size: 1rem;
       }
       &__description {
-        font-size: 0.75rem;
+        font-size: 0.825rem;
       }
     }
     &__monthly-price {

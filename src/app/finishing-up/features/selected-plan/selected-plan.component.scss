@@ -1,0 +1,23 @@
+@use "/src/styles/variables";
+@use "/src/styles.scss";
+
+.selected-plan {
+  @include styles.flex(row, 0);
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+
+  &__type {
+    @include styles.flex(column, 0);
+
+    &__change-link {
+      text-decoration: underline;
+      color: variables.$color-neutral-cool-gray;
+      font-weight: 400;
+      &:hover {
+        color: variables.$color-primary-purplish-blue;
+        cursor: pointer;
+      }
+    }
+  }
+}

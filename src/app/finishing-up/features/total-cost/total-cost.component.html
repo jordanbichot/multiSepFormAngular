@@ -1,0 +1,11 @@
+<div
+  class="total"
+  *ngIf="{ isMonthly: isFacturationCycleMonthly$ | async } as currentPlan"
+>
+  <p class="total__text">
+    Total (per {{ currentPlan.isMonthly! | facturationCycleText : false }})
+  </p>
+  <p class="total__price">
+    +${{ totalCost }}{{ currentPlan.isMonthly! | endingFacturationText }}
+  </p>
+</div>

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlanSelectorComponent } from './plan-selector.component';
-import { PlanBuilderService } from './data-access/plan-builder.service';
-import { StepControlService } from '../steps-sidebar/data-access/step-control.service';
+import { StepHeaderComponent } from '../shared/step-header/step-header.component';
+import { StepHeaderModule } from '../shared/step-header/step-header.module';
+import { AvailablePlansComponent } from './features/available-plans/available-plans.component';
+import { BillingSelectorComponent } from './features/billing-selector/billing-selector.component';
 
 @NgModule({
-  declarations: [PlanSelectorComponent],
-  imports: [CommonModule],
+  declarations: [PlanSelectorComponent, AvailablePlansComponent, BillingSelectorComponent],
+  imports: [CommonModule, StepHeaderModule],
   exports: [PlanSelectorComponent],
-  providers: [PlanBuilderService, StepControlService],
 })
 export class PlanSelectorModule {}

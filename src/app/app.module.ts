@@ -19,7 +19,6 @@ import { PersonalInfoModule } from './personal-info/personal-info.module';
 import { PlanSelectorModule } from './plan-selector/plan-selector.module';
 import { StepsModule } from './steps-sidebar/steps.module';
 import { ThankYouModule } from './thank-you/thank-you.module';
-import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     FinishingUpModule,
     ThankYouModule,
   ],
-  providers: [PlanBuilderService, StepControlService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

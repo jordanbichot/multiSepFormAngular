@@ -1,16 +1,5 @@
 @use "/src/styles/variables";
 @use "/src/styles.scss";
-.personal-info {
-  color: variables.$color-primary-marine-blue;
-
-  &__main-text {
-    margin-bottom: 0.5rem;
-  }
-
-  &__description-text {
-    @include styles.secondary-text();
-  }
-}
 
 ::ng-deep .personal-info__form {
   @include styles.flex(column, 0.5rem);
@@ -29,5 +18,11 @@
     }
 
     font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  form {
+    margin-top: 1.5rem;
   }
 }

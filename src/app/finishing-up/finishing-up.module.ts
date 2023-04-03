@@ -1,13 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FinishingUpComponent } from './finishing-up.component';
-import { PlanBuilderService } from '../plan-selector/data-access/plan-builder.service';
-import { StepControlService } from '../steps-sidebar/data-access/step-control.service';
+import { StepHeaderModule } from '../shared/step-header/step-header.module';
+import { SelectedPlanComponent } from './features/selected-plan/selected-plan.component';
+import { SelectedAddOnsComponent } from './features/selected-add-ons/selected-add-ons.component';
+import { TotalCostComponent } from './features/total-cost/total-cost.component';
+import { FacturationCycleTextPipe } from './pipes/facturation-cycle-text.pipe';
+import { EndingFacturationTextPipe } from '../shared/pipes/ending-facturation-text.pipe';
 
 @NgModule({
-  declarations: [FinishingUpComponent],
-  imports: [CommonModule],
+  declarations: [
+    FinishingUpComponent,
+    SelectedPlanComponent,
+    SelectedAddOnsComponent,
+    TotalCostComponent,
+    FacturationCycleTextPipe,
+    EndingFacturationTextPipe,
+  ],
+  imports: [CommonModule, StepHeaderModule],
   exports: [FinishingUpComponent],
-  providers: [PlanBuilderService, StepControlService],
 })
 export class FinishingUpModule {}

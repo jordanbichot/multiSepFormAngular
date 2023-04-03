@@ -1,0 +1,24 @@
+<div
+  class="plans"
+  *ngIf="{ isMonthly: isFacturationCycleMonthly$ | async } as currentPlan"
+>
+  <article
+    *ngFor="let plan of plansToChooseFrom"
+    class="plans__plan"
+    (click)="selectPlan(plan.id)"
+    [class.selected_plan]="isPlanSelected(plan.id)"
+  >
+    <img class="plans__plan__icon" [src]="plan.srcUrl" />
+    <h3 class="plans__plan__plan-type">{{ plan.planName }}</h3>
+
+    <p class="plans__plan__monthly-rate" *ngIf="currentPlan.isMonthly">
+      ${{ plan.price }}/mo
+    </p>
+    <p class="plans__plan__yearly-rate" *ngIf="!currentPlan.isMonthly">
+      ${{ plan.price * 10 }}/yr
+    </p>
+    <p class="plans__plan__discount" *ngIf="!currentPlan.isMonthly">
+      {{ plan.disccountText }}
+    </p>
+  </article>
+</div>

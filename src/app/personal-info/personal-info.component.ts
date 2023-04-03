@@ -10,6 +10,8 @@ import { PlanBuilderService } from '../plan-selector/data-access/plan-builder.se
   styleUrls: ['./personal-info.component.scss'],
 })
 export class PersonalInfoComponent implements OnInit, OnDestroy {
+  public stepInfo = this.stepControlService.getStepInfo(1);
+
   private FormStatusSubscription: Subscription = new Subscription();
   public form = new FormGroup({
     name: new FormControl('', []),

@@ -1,10 +1,8 @@
-<section class="pick-add-ons">
-  <div class="pick-add-ons__description">
-    <h2 class="pick-add-ons__main-text">Pick add-ons</h2>
-    <p class="pick-add-ons__description-text">
-      Add-ons help enhance your gaming experience.
-    </p>
-  </div>
+<section
+  class="pick-add-ons"
+  *ngIf="{ isMonthly: isFacturationCycleMonthly$ | async } as currentPlan"
+>
+  <app-step-header [stepText]="stepInfo.header"></app-step-header>
 
   <div class="pick-add-ons__add-ons-container">
     <article
@@ -28,13 +26,13 @@
       </div>
       <p
         class="pick-add-ons__add-ons-container__add-on__monthly-price"
-        *ngIf="isFacturationCycleMonthly"
+        *ngIf="currentPlan.isMonthly"
       >
         +{{ addOn.cost }}$/mo
       </p>
       <p
         class="pick-add-ons__add-ons-container__add-on__yearly-price"
-        *ngIf="!isFacturationCycleMonthly"
+        *ngIf="!currentPlan.isMonthly"
       >
         +{{ addOn.cost * 10 }}$/yr
       </p>

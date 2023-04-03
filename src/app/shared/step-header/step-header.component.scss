@@ -1,0 +1,13 @@
+@use "/src/styles/variables";
+@use "/src/styles.scss";
+.header {
+  color: variables.$color-primary-marine-blue;
+
+  &__main-text {
+    margin-bottom: 0.5rem;
+  }
+
+  &__description-text {
+    @include styles.secondary-text();
+  }
+}

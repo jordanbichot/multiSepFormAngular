@@ -1,0 +1,18 @@
+<article
+  class="selected-plan"
+  *ngIf="{ isMonthly: isFacturationCycleMonthly$ | async } as currentPlan"
+>
+  <div class="selected-plan__type">
+    <p class="selected-plan__type__text">
+      {{ selectedPlan }} ({{
+        currentPlan.isMonthly! | facturationCycleText : true
+      }})
+    </p>
+    <a class="selected-plan__type__change-link" (click)="changePlan()"
+      >Change</a
+    >
+  </div>
+  <p class="selected-plan__total-cost">
+    +${{ planBasicCost }}{{ currentPlan.isMonthly! | endingFacturationText }}
+  </p>
+</article>

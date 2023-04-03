@@ -1,7 +1,7 @@
-export interface basicPlanDetails {
+export interface BasicPlanDetails {
   id: number;
   planName: string;
   price: number;
-  srcURL: string | undefined;
+  srcUrl: string | undefined;
   disccountText?: string;
 }

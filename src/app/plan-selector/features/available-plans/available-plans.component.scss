@@ -1,0 +1,100 @@
+@use "/src/styles/variables";
+@use "/src/styles.scss";
+
+.plans {
+  @include styles.flex(row, 1rem);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+
+  &__plan {
+    @include styles.flex(column, 0.25rem);
+    justify-content: space-between;
+
+    border: solid 2px;
+    border-color: variables.$color-neutral-light-gray;
+    border-radius: 0.25rem;
+    width: 100%;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    margin-bottom: 0.25rem;
+
+    font-size: 0.95rem;
+
+    &:hover {
+      cursor: pointer;
+      border-color: variables.$color-primary-marine-blue;
+    }
+
+    &__icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 3rem;
+    }
+
+    &__monthly-rate {
+      color: variables.$color-neutral-cool-gray;
+    }
+
+    &__yearly-rate {
+      color: variables.$color-neutral-cool-gray;
+    }
+
+    &__discount {
+      margin-top: 0.25rem;
+      font-size: 0.8125rem;
+    }
+  }
+}
+
+.selected_plan {
+  border-color: variables.$color-primary-marine-blue;
+  background-color: variables.$color-neutral-alabaster;
+}
+
+@media screen and (max-width: 376px) {
+  .plans {
+    @include styles.flex(column, 1rem);
+    &__plan {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 65px 1fr;
+      align-items: center;
+      border-radius: 0.75rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+
+      &__icon {
+        margin-bottom: 0;
+        grid-column-start: 1;
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+
+      &__plan-type {
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+      }
+
+      &__monthly-rate {
+        grid-column-start: 2;
+        grid-row-start: 2;
+        grid-row-end: 4;
+      }
+
+      &__yearly-rate {
+        grid-column-start: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      &__discount {
+        grid-column-start: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+      }
+    }
+  }
+}

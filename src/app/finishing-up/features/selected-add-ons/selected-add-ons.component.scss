@@ -1,0 +1,27 @@
+@use "/src/styles/variables";
+@use "/src/styles.scss";
+
+.selected-add-ons {
+  @include styles.flex(column, 1rem);
+  color: variables.$color-neutral-cool-gray;
+
+  &__add-on {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+
+    &__name {
+      grid-column-start: 1;
+      justify-self: left;
+    }
+
+    &__price-monthly,
+    &__price-yearly {
+      color: variables.$color-primary-marine-blue;
+      grid-column-start: 2;
+      grid-row-start: 1;
+      justify-self: end;
+    }
+  }
+}

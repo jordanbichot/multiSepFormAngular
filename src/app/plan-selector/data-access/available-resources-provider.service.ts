@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { basicPlanDetails } from '../models/basic-plan-details';
-import { addOnDetails } from 'src/app/add-ons-picker/models/addOnDetails';
+import { BasicPlanDetails } from '../models/basic-plan-details';
+import { AddOnDetails } from 'src/app/add-ons-picker/models/add-on-details';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AvailableResourcesProviderService {
-  private availablePlans: basicPlanDetails[] = [];
-  private availableAddOns: addOnDetails[] = [];
+  private availablePlans: BasicPlanDetails[] = [];
+  private availableAddOns: AddOnDetails[] = [];
 
   constructor() {
     this.availableAddOns.push({
@@ -33,21 +33,21 @@ export class AvailableResourcesProviderService {
       id: 0,
       planName: 'Arcade',
       price: 9,
-      srcURL: '../../../../../assets/images/icon-arcade.svg',
+      srcUrl: '../../../../../assets/images/icon-arcade.svg',
       disccountText: '2 months free',
     });
     this.availablePlans.push({
       id: 1,
       planName: 'Advanced',
       price: 12,
-      srcURL: '../../../../../assets/images/icon-advanced.svg',
+      srcUrl: '../../../../../assets/images/icon-advanced.svg',
       disccountText: '2 months free',
     });
     this.availablePlans.push({
       id: 2,
       planName: 'Pro',
       price: 15,
-      srcURL: '../../../../../assets/images/icon-pro.svg',
+      srcUrl: '../../../../../assets/images/icon-pro.svg',
       disccountText: '2 months free',
     });
   }
@@ -60,7 +60,7 @@ export class AvailableResourcesProviderService {
     return this.availableAddOns;
   }
 
-  public getPlanYearlyCost(plan: basicPlanDetails) {
+  public getPlanYearlyCost(plan: BasicPlanDetails) {
     return plan.price * 10;
   }
 

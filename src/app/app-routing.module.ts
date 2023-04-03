@@ -7,10 +7,10 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 
 const routes: Routes = [
-  { path: 'planSelection', component: PlanSelectorComponent },
-  { path: 'addOnsSelection', component: AddOnsPickerComponent },
-  { path: 'finishingUp', component: FinishingUpComponent },
-  { path: 'thankYou', component: ThankYouComponent },
+  { path: 'plan-selection', component: PlanSelectorComponent },
+  { path: 'add-ons-selection', component: AddOnsPickerComponent },
+  { path: 'finishing-up', component: FinishingUpComponent },
+  { path: 'thank-you', component: ThankYouComponent },
   { path: '', component: PersonalInfoComponent },
   {
     path: '**',
