@@ -11,6 +11,7 @@ export class SelectedAddOnsComponent implements OnInit {
   public selectedAddOns: AddOnDetails[] = [];
   public isFacturationCycleMonthly$ =
     this.planBuilderService.isFacturationCycleMonthly$;
+
   constructor(private planBuilderService: PlanBuilderService) {}
 
   ngOnInit(): void {
