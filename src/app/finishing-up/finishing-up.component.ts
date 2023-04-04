@@ -16,8 +16,7 @@ export class FinishingUpComponent implements OnInit {
 
   constructor(
     private planBuilderService: PlanBuilderService,
-    private stepControlService: StepControlService,
-    private availableResourcesProviderService: AvailableResourcesProviderService
+    private stepControlService: StepControlService
   ) {}
 
   ngOnInit(): void {

@@ -16,7 +16,7 @@ import { Step } from './models/step-details';
   styleUrls: ['./steper.component.scss'],
 })
 export class StepsSidebarComponent {
-  activeStep$ = this.stepControlService.currentStep$;
+  public activeStep$ = this.stepControlService.currentStep$;
   public steps: Step[] = [];
 
   constructor(private stepControlService: StepControlService) {
