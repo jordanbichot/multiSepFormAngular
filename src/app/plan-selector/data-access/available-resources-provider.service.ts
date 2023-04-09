@@ -33,21 +33,21 @@ export class AvailableResourcesProviderService {
       id: 0,
       planName: 'Arcade',
       price: 9,
-      srcUrl: '~/src/assets/images/icon-arcade.svg',
+      srcUrl: './assets/images/icon-arcade.svg',
       disccountText: '2 months free',
     });
     this.availablePlans.push({
       id: 1,
       planName: 'Advanced',
       price: 12,
-      srcUrl: '~/src/assets/images/icon-advanced.svg',
+      srcUrl: './assets/images/icon-advanced.svg',
       disccountText: '2 months free',
     });
     this.availablePlans.push({
       id: 2,
       planName: 'Pro',
       price: 15,
-      srcUrl: '~/src/assets/images/icon-pro.svg',
+      srcUrl: './assets/images/icon-pro.svg',
       disccountText: '2 months free',
     });
   }

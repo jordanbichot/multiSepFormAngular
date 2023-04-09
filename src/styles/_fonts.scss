@@ -1,21 +1,41 @@
 @font-face {
+  font-display: swap;
   font-family: "Ubuntu";
+  font-style: normal;
   font-weight: 400;
-  src: url("/src/assets/fonts/Ubuntu-Regular.woff2") format("woff2"),
-    url("/src/assets/fonts/Ubuntu-Regular.woff") format("woff"),
-    url("/src/assets/fonts/Ubuntu-Regular.ttf") format("tff");
+  src: url("/src/assets/fonts/ubuntu-v20-latin-regular.eot");
+  src: url("/src/assets/fonts/ubuntu-v20-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("/src/assets/fonts/ubuntu-v20-latin-regular.woff2") format("woff2"),
+    url("/src/assets/fonts/ubuntu-v20-latin-regular.woff") format("woff"),
+    url("/src/assets/fonts/ubuntu-v20-latin-regular.ttf") format("truetype"),
+    url("/src/assets/fonts/ubuntu-v20-latin-regular.svg#Ubuntu") format("svg");
 }
+
 @font-face {
+  font-display: swap;
   font-family: "Ubuntu";
+  font-style: normal;
   font-weight: 500;
-  src: url("/src/assets/fonts/Ubuntu-Medium.woff2") format("woff2"),
-    url("/src/assets/fonts/Ubuntu-Medium.woff") format("woff"),
-    url("/src/assets/fonts/Ubuntu-Medium.ttf") format("tff");
+  src: url("/src/assets/fonts/ubuntu-v20-latin-500.eot");
+  src: url("/src/assets/fonts/ubuntu-v20-latin-500.eot?#iefix")
+      format("embedded-opentype"),
+    url("/src/assets/fonts/ubuntu-v20-latin-500.woff2") format("woff2"),
+    url("/src/assets/fonts/ubuntu-v20-latin-500.woff") format("woff"),
+    url("/src/assets/fonts/ubuntu-v20-latin-500.ttf") format("truetype"),
+    url("/src/assets/fonts/ubuntu-v20-latin-500.svg#Ubuntu") format("svg");
 }
+
 @font-face {
+  font-display: swap;
   font-family: "Ubuntu";
+  font-style: normal;
   font-weight: 700;
-  src: url("/src/assets/fonts/Ubuntu-Bold.woff2") format("woff2"),
-    url("/src/assets/fonts/Ubuntu-Bold.woff") format("woff"),
-    url("/src/assets/fonts/Ubuntu-Bold.ttf") format("tff");
+  src: url("/src/assets/fonts/ubuntu-v20-latin-700.eot");
+  src: url("/src/assets/fonts/ubuntu-v20-latin-700.eot?#iefix")
+      format("embedded-opentype"),
+    url("/src/assets/fonts/ubuntu-v20-latin-700.woff2") format("woff2"),
+    url("/src/assets/fonts/ubuntu-v20-latin-700.woff") format("woff"),
+    url("/src/assets/fonts/ubuntu-v20-latin-700.ttf") format("truetype"),
+    url("/src/assets/fonts/ubuntu-v20-latin-700.svg#Ubuntu") format("svg");
 }
