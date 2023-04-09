@@ -5,6 +5,7 @@
 body {
   font-family: Ubuntu, Fallback, sans-serif;
   color: variables.$color-primary-marine-blue;
+  margin: 0;
 }
 
 @mixin flex($direction, $gap) {
@@ -22,15 +23,6 @@ body {
     font-size: 1rem;
     margin-bottom: 0;
   }
-}
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .buttons {

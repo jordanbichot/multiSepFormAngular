@@ -5,8 +5,9 @@
   background-image: url("../../assets/images/bg-sidebar-desktop.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 274px;
-  height: 568px;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
 }
 
 .steps__list {
@@ -62,24 +63,42 @@
   font-weight: 800;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 1439px) {
   .steps__card {
     background-image: url("../../assets/images/bg-sidebar-mobile.svg");
-    width: 375px;
-    height: 170px;
+    border-radius: 0;
   }
 
   .steps__list {
     @include styles.flex(row, 1.5rem);
-    justify-content: center;
-    padding-left: 0;
+    justify-content: space-around;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     &__button {
       width: 2rem;
       height: 2rem;
     }
-
+  }
+}
+@media screen and (max-width: 900px) {
+  .steps__list {
     &__text {
-      display: none;
+      align-self: center;
+      &__description {
+        display: none;
+      }
     }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .steps__list__text {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .steps__list {
+    justify-content: center;
   }
 }

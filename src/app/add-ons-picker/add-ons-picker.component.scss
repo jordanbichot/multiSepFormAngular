@@ -97,21 +97,56 @@
   display: none;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 1439px) {
   .pick-add-ons__add-ons-container__add-on {
     &__text {
       &__name {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
       &__description {
-        font-size: 0.825rem;
+        font-size: 1rem;
       }
     }
     &__monthly-price {
-      font-size: 0.825rem;
+      font-size: 1rem;
     }
     &__yearly-price {
-      font-size: 0.825rem;
+      font-size: 1rem;
+    }
+    &::after {
+      width: 25px;
+      height: 25px;
+    }
+    &__checkbox {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .pick-add-ons__add-ons-container__add-on {
+    &__text {
+      &__name {
+        font-size: 0.9rem;
+      }
+      &__description {
+        font-size: 0.75rem;
+      }
+    }
+    &__monthly-price {
+      font-size: 0.75rem;
+    }
+    &__yearly-price {
+      font-size: 0.75rem;
+    }
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+    &__checkbox {
+      width: 20px;
+      height: 20px;
     }
   }
 }
