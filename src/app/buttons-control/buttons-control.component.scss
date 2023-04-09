@@ -33,23 +33,21 @@
   }
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 1439px) {
   .card {
     &__flow-buttons {
-      grid-row-start: 4;
-      grid-column-start: 1;
       height: 100%;
       padding: 12px;
       background-color: variables.$color-neutral-white;
 
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 15px 1fr 1fr 15px;
 
       &__go-back {
-        grid-column-start: 1;
+        grid-column-start: 2;
       }
       &__next-step {
-        grid-column-start: 2;
+        grid-column-start: 3;
       }
     }
   }

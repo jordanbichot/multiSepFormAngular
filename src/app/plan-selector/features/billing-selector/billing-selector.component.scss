@@ -74,7 +74,7 @@ input:checked + .slider:before {
   color: variables.$color-neutral-cool-gray;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 1439px) {
   .billing-selector {
     border-radius: 0.75rem;
   }

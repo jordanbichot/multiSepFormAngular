@@ -53,15 +53,30 @@
   background-color: variables.$color-neutral-alabaster;
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 1439px) {
+  .plans {
+    justify-content: space-around;
+    &__plan {
+      align-items: center;
+      min-width: 250px;
+      max-width: 300px;
+      padding-left: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
   .plans {
     @include styles.flex(column, 1rem);
+    align-items: center;
     &__plan {
       display: grid;
       grid-template-rows: 1fr 1fr;
       grid-template-columns: 65px 1fr;
       align-items: center;
       border-radius: 0.75rem;
+
+      padding-left: 1rem;
       padding-top: 0.75rem;
       padding-bottom: 0.75rem;
 

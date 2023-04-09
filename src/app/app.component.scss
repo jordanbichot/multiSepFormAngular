@@ -2,6 +2,8 @@
 @use "/src/styles.scss";
 
 .main-component {
+  width: 100%;
+  height: 100%;
   background-color: variables.$color-neutral-magnolia;
   display: grid;
 
@@ -11,6 +13,7 @@
   &__card {
     grid-column-start: 2;
     grid-row-start: 2;
+    min-height: 550px;
     background-color: variables.$color-neutral-white;
 
     padding: 0.5rem;
@@ -18,10 +21,11 @@
 
     display: grid;
     grid-template-columns: 285px 95px 1fr 95px;
-    grid-template-rows: 45px 441px 85px;
+    grid-template-rows: 45px 6fr 1fr;
 
     &__sidebar {
       grid-row-start: 1;
+      grid-row-end: 4;
       grid-column-start: 1;
     }
 
@@ -48,18 +52,19 @@
   }
 }
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 1439px) {
   .main-component {
     overflow-x: hidden;
     background-color: variables.$color-neutral-magnolia;
-    display: flex;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
 
     &__card {
       grid-column-start: 1;
       grid-row-start: 1;
       display: grid;
-      grid-template-rows: 100px 70px 521px 70px;
-      grid-template-columns: 1fr;
+      grid-template-rows: 100px 70px 1fr 70px;
+      grid-template-columns: 15px 1fr 15px;
       flex-direction: column;
       align-items: start;
       justify-content: center;
@@ -71,14 +76,17 @@
       &__sidebar {
         grid-row-start: 1;
         grid-row-end: 3;
+        align-self: normal;
         grid-column-start: 1;
+        grid-column-end: 4;
         z-index: 0;
       }
 
       &__menus {
+        height: max-content;
         grid-row-start: 2;
         grid-row-end: 4;
-        grid-column-start: 1;
+        grid-column-start: 2;
         z-index: 1;
         margin: 0 15px;
         padding: 2.25rem 1.75rem;
@@ -89,6 +97,7 @@
 
       &__flow-buttons {
         grid-column-start: 1;
+        grid-column-end: 4;
         grid-row-start: 4;
       }
     }
