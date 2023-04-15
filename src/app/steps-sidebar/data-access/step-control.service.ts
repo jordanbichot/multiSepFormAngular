@@ -14,6 +14,9 @@ export class StepControlService {
   private isFormEnded = new BehaviorSubject<boolean>(false);
   public isFormEnded$ = this.isFormEnded.asObservable();
 
+  private isNextTouched = new BehaviorSubject<boolean>(false);
+  public isNextTouched$ = this.isNextTouched.asObservable();
+
   public isCurrentStepCompleted: boolean = false;
   public steps: Step[] = [
     {
@@ -73,6 +76,9 @@ export class StepControlService {
         this.isFormEnded.next(true);
       }
     }
+    if (this.currentStep.value === 1) {
+      this.isNextTouched.next(true);
+    }
   }
 
   public previousStep() {
@@ -81,6 +87,10 @@ export class StepControlService {
 
     if (this.currentStep.value === 3) {
       this.isLastStep.next(false);
+    }
+
+    if (this.currentStep.value === 1) {
+      this.isNextTouched.next(false);
     }
   }
 

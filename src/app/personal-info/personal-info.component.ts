@@ -13,6 +13,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
   public stepInfo = this.stepControlService.getStepInfo(1);
 
   private FormStatusSubscription: Subscription = new Subscription();
+  private NextTouchedSubscription: Subscription = new Subscription();
   public form = new FormGroup({
     name: new FormControl('', []),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -31,6 +32,15 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
     this.FormStatusSubscription = this.form.statusChanges.subscribe(() => {
       this.validationChecked();
     });
+
+    this.NextTouchedSubscription =
+      this.stepControlService.isNextTouched$.subscribe((isTouched) => {
+        if (isTouched) {
+          this.form.controls.email.markAsTouched();
+          this.form.controls.phone.markAsTouched();
+        }
+      });
+
     this.stepControlService.isCurrentStepCompleted = false;
   }
 
@@ -41,6 +51,7 @@ export class PersonalInfoComponent implements OnInit, OnDestroy {
       phone: this.form.value.phone!,
     };
     this.FormStatusSubscription.unsubscribe();
+    this.NextTouchedSubscription.unsubscribe();
   }
 
   validationChecked() {
